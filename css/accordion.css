@@ -1,0 +1,316 @@
+.content {
+  display: block;
+  position: relative;
+  width: 90%;
+  height: auto;
+  margin: 20px auto;
+  box-shadow: 0px 0px 5px var(--tarja-theme);
+}
+.contem {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: auto;
+  margin: 20px auto;
+  box-shadow: 0px 0px 5px var(--tarja-theme);
+}
+.accordion_item {
+  position: relative;
+  border: 1px solid var(--borde-theme);
+}
+.accordion_header {
+  display: flex;
+  position: relative;
+  padding: 10px;
+  color: var(--text-theme);
+  cursor: pointer;
+  justify-content: space-between;
+  background: var(--tarja-theme);
+  transition: all 0.3s ease-in-out;
+}
+.accordion_header:hover {
+  background: var(--select-hover);
+}
+.active2 {
+  position: relative;
+  height: auto;
+}
+.accordion_header span, .icon {
+  position: relative;
+  font-weight: 500;
+}
+.accordion_header span a {
+  font-size: 14px;
+  text-decoration: none;
+  color: var(--text-theme);
+}
+/* ///////////// Conteúdo ////////////// */
+.accordion_content {
+  display: "";
+  position: relative;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  height: 0;
+  transition: all 0.5s ease;
+  font-size: 14px;
+  background: var(--area-theme);
+}
+.selecao-de-aulas {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+  min-height: calc(100vh - 152px);
+  justify-content: center;
+	margin: 10px 0;
+}
+.selecao-de-aulas .aulas {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	max-width: 90%;
+	height: 100%;
+}
+.aulas ul{
+  list-style: none;
+}
+.selecao-de-aulas .aulas .titulo {
+	width: 100%;
+  margin-top: 10px;
+	font-size: 20px;
+	letter-spacing: 4px;
+	text-align: center;
+	color: var(--text-body);
+	border-bottom: 2px solid var(--text-body); 
+}
+.selecao-de-aulas .lista-de-aulas {
+	display: flex;
+	flex-wrap: wrap;
+	padding: 20px 0;
+	justify-content: left space-between;
+}
+.lista-de-aulas .aula {
+	width: 21%;
+  margin: 20px;
+  padding: 0;
+  /*border: #ec1717 1px solid;*/
+	border-bottom: 4px solid var(--autofill3);/* xxxxx */
+}
+.lista-de-aulas .aula img {
+	width: 100%;
+	height: 100%;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+}
+.lista-de-aulas .aula.selecionado {
+	box-shadow: 0px 0px 24px 5px var(--autofill3);
+  transition: all 0.5s ease-in-out;
+}
+/*
+.lista-de-aulas .aula .text {
+  color: #e21111;
+  font-size: 15px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+}
+/* //////// videos na modal //////// */
+.aula-selecionado {
+  width: 700px;
+  height: auto;
+  margin: 0 auto;
+  padding: 0 auto;
+  text-align: center;
+	z-index: 2;
+  /*border: 2px solid #e40a0a;/* xxxxx */
+}
+.aula-selecionado .aula-grande {
+  width: 696px;
+  height: auto;
+	margin: 20px 0 10px; /* espaço do video com o topo */
+  /*border: 2px solid #FFFFFF;/* xxxxx */
+}
+.aula-selecionado .nome-aula {
+  margin-top: 20px; /* Espaço entre título e botão modal */
+  letter-spacing: 4px;
+	color: var(--text-theme);
+  border-bottom: 2px solid var(--text-theme);
+}
+.aula-selecionado .descricao-aula {
+  width: 100%;
+  margin: 5px 0 30px;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 20px;
+  text-align: left;
+	color: var(--text-theme);
+  /*border: 2px solid #3ecf05;/* xxxxx */
+}
+/* //////// função //////// */
+.modal {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  background-color: #000000;
+  visibility: hidden;
+  /*border: 2px solid #05cfcf;/* xxxxx */
+}
+.conteudo-modal {
+  display: flex;
+  position: absolute;/* ??? */
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0 auto;
+  justify-content: unset;
+  flex-direction: column;
+  overflow-y: scroll;
+  /*border: 2px solid #c805cf;/* xxxxx */
+}
+/* //////// ocultar o overflow //////// */
+ .conteudo-modal::-webkit-scrollbar {
+  width: 0px;
+  background: transparent; /* Opcional */
+}
+/* CSS para outros navegadores */
+.conteudo-modal {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;  /* IE and Edge */
+}
+.conteudo-modal::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
+/* //////// ocultar o overflow ^ //////// */
+.fechar-modal {
+  width: auto;
+  height: auto;
+  margin: 10px auto 10px;
+  padding: 5px 15px;
+  font-size: 15px;
+  font-weight: bold;
+  color: transparent;
+  text-align: center;
+  background: var(--button-modal);
+  background-image: url(../img/return.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+  border: 1px solid var(--borde-theme);/* xxxxx */
+  /*transition: all 0.3s ease-in-out;*/
+  transition: background-color 1s;
+}
+.fechar-modal:hover {
+  background: var(--select-hover);
+  background-image: url(../img/return.png);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.modal.aberto {
+  visibility: visible;
+	z-index: 1;
+}
+/* //////// fim da função //////// */
+/* ////////// Apostila ////////// */
+.grupo {
+  width: 100%;
+  padding: 10px 15px;
+  color: var(--text-body);
+}
+.grupo span {
+  padding: 5px;
+  font-size: 18px;
+}
+.accordion_content hr {
+  width: 98%;
+  margin: 10px auto;
+}
+.apostila {
+  display: block;
+  position: relative;
+  width: 100%;
+  margin: 0;
+  padding: 10px 20px;
+  color: var(--text-body);
+}
+.apostila p {
+  padding: 5px;
+  font-size: 14px;
+  font-weight: 500;
+}
+.apostila p span {
+  font-size: 14px;
+  font-weight: bold;
+}
+.apostila h3 {
+  padding: 10px;
+  font-size: 18px;
+}
+.apostila li {
+  padding: 5px;
+}
+.apostila li span {
+  font-weight: bold;
+}
+.apostila .imagemA {
+  display: flex;
+  position: relative;
+  width: 20%;
+  height: auto;
+  margin: auto;
+}
+.apostila .imagemA img {
+  width: 100%;
+  height: auto;
+}
+.apostila .imagemB {
+  display: flex;
+  position: relative;
+  width: 50%;
+  height: auto;
+  margin: auto;
+}
+.apostila .imagemB img {
+  width: 100%;
+  height: auto;
+}
+/* //////// Tabelas //////// */
+.tabelartigo {
+  display: flex;
+  position: relative;
+  width: 100%;
+  padding: 10px;
+  /*border: 2px solid var(--bordep-theme);/* xxxxx */
+}
+.tabelartigo span {
+  display: "";
+  position: relative;
+  font-size: 14px;
+  font-weight: bold;
+  border-bottom: 2px solid var(--bordep-theme);
+}
+.tabelartigo .lesao {
+  display: block;
+  position: relative;
+  width: 25%;
+  margin: 3px;
+  padding: 10px;
+  font-size: 12px;
+  border: 2px solid var(--bordep-theme);
+}
+/* //////////////// */
+.thattori {
+  display: "";
+  position: relative;
+  margin: 0;
+  padding: 0 auto;
+}
+.tbhattori {
+  margin: auto;
+}
+.tbhattori tr td {
+  padding: 10px 30px;
+}

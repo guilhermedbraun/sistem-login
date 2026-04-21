@@ -1,0 +1,212 @@
+:root {
+--background: #DCDCDC;
+--tarja-theme: #00093c;
+--sub-theme: #0099ff;
+--area-theme: #DCDCDC;
+--profile-theme: #585858;
+/* /////////////////////////// */
+--borde-theme: #FFFFFF;
+--text-theme: #FFFFFF;
+/* /////////////////////////// */
+--borde-search: #FFFFFF;
+--text-search: #FFFFFF;
+--switch-search: url(../img/search-a.png);
+/* /////////////////////////// */
+--bordep-theme: #000000;
+--text-body: #000000;
+/* /////////////////////////// */
+--button-theme: #0747a1;
+--select-hover: #0099ff;
+--button-modal: #00093c;
+/* /////////////////////////// */
+--autofill: #00093d;
+--autofill2: rgba(0, 9, 61, 0.9);
+--autofill3: #0747a1;
+/* /////////////////////////// */
+--dropdown-mobile: #000000;
+/* /////////////////////////// */
+--surface-color: transparent;
+--highlight-color: #008eec80;
+--switch-bg-url: url(../img/sun.svg);
+/* //////////// Neutro /////// */
+--transparent: transparent;
+/* /////// Painel ADM //////// */
+--painel-admin: #ff9800;
+--painel-alunos: #0747a1;
+--painel-balunos: #0747a1;
+--painel-ativos: #009a5b;
+/* ////// Botões System ////// */
+--sys-pencil: #0747a1;
+--sys-pencil-hover: #0099ff;
+--sys-user: #0747a1; /* perfil do usuário na pesquisa */
+--sys-user-hover: #0099ff;
+--sys-avalia: #FFFFFF; /* ficha técnica na pesquisa do dashboard */
+--sys-avalia-hover: #FFFFFF; 
+--sys-lock: #228b22;
+--sys-lock-hover: #b40001;
+--sys-trash: #640d15; /* lixeira e mensagem de erro */
+--sys-trash-hover: #b40001;
+ /* ////// seta no select do formulário ////// */
+--sys-arrow: #0747a1; /* seta no select do formulário */
+--positive: #228b22; /* mensagem de sucesso*/
+--positive-borde: #00a900; /* mensagem de sucesso "bordas" */
+--outro-borde: #f49f1c;
+}
+.dark-mode {
+--background: #363636;
+--tarja-theme: #000000;
+--sub-theme: #00093c;
+--area-theme: #505050;
+--profile: #585858;
+/* /////////////////////////// */
+--borde-theme: #FFFFFF;
+--text-theme: #FFFFFF;
+/* /////////////////////////// */
+--borde-search: #FFFFFF;
+--text-search: #FFFFFF;
+--switch-search: url(../img/search-b.png);
+/* /////////////////////////// */
+--bordep-theme: #000000;
+--text-body: #FFFFFF;
+/* /////////////////////////// */
+--button-theme: #0747a1;
+--select-hover: #0099ff;
+--button-modal: #000000;
+/* /////////////////////////// */
+--autofill: #00093c;
+--autofill2: #0747a1;
+--autofill3: #00093c;
+/* /////////////////////////// */
+--dropdown-mobile: #00093c;
+/* /////////////////////////////// */
+--surface-color: transparent;
+--highlight-color: #008eec80;
+--switch-bg-url: url(../img/moon.svg);
+/* //////////// Neutro /////// */
+--transparent: transparent;
+/* /////// Painel ADM //////// */
+--painel-admin: #ff9800;
+--painel-alunos: #0747a1;
+--painel-balunos: #00093c;
+--painel-ativos: #009a5b;
+/* ////// Botões System ////// */
+--sys-pencil: #0747a1;
+--sys-pencil-hover: #0099ff;
+--sys-lock: #228b22;
+--sys-lock-hover: #b40001;
+--sys-trash: #640d15; /* lixeira e mensagem de erro */
+--sys-trash-hover: #b40001; /* lixeita e botão sair */
+--sys-arrow: #0747a1; /* seta no select do formulário */
+--positive: #228b22; /* mensagem de sucesso*/
+--positive-borde: #00a900; /* mensagem de sucesso "bordas" */
+--outro-borde: #f49f1c;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+/* antigo
+body {
+  display: block;
+  width: 100%;
+  min-height: 80vh;
+  margin: 0;
+  padding: 0;
+  background: var(--background);
+}
+*/
+body {/*
+  display: block;
+  width: 100%;
+  min-height: 80vh;*/
+  margin: 0;
+  padding: 0;
+  background: var(--background);
+  background-image: url("../img/background-b.jpg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+.pection {
+  display: block;
+  position: relative;
+  margin: 0;
+  padding: 5px;
+  width: 100%;
+  min-height: 100vh;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.section {
+  display: block;
+  position: relative;
+  margin: 0;
+  padding: 5px;
+  width: 100%;
+  min-height: 100vh;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.hidden {
+  display: none;
+}
+/* ///////////// switch ///////////// */
+#switch {
+  position: relative;
+  width: 42px; /* largura do espaço oculto do botão */
+  height: auto; /* tamanho do espaço oculto do botão */
+  margin: 0 5px;
+  padding: 6px 0;
+}
+#switch button {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: var(--borde-theme) var(--switch-bg-url) no-repeat center;
+  border: 0;
+  border-radius: 50%;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+  animation: slide-back 0.3s;
+}
+.dark-mode #switch button {
+  animation: slide-in 0.3s forwards;
+}
+#switch button:hover {
+  outline: 5px solid var(--highlight-color);
+}
+#switch span {
+  display: block;
+  width: 40px;
+  height: 20px;
+  margin: 0 auto;
+  background: var(--surface-color);
+  border: 1px solid var(--borde-theme);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 50px;
+}
+/*---------- animation switch ----------*/
+@keyframes slide-in {
+  from {
+    left: 0;
+  }
+  to {
+    left: 50%;
+  }
+}
+@keyframes slide-back {
+  from {
+    left: 50%;
+  }
+  to {
+    left: 0;
+  }
+}

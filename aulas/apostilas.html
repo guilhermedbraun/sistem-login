@@ -1,0 +1,1267 @@
+<?php
+    session_start();
+    include_once('../system/config.php');
+    include_once('../system/timeout.php');
+
+    //print_r($_SESSION);// retirar
+    
+    if((!isset($_SESSION['email']) == true) and (!isset($_SESSION['senha']) == true))
+    {
+        unset($_SESSION['email']);
+        unset($_SESSION['senha']);
+        unset($_SESSION['id']);
+        unset($_SESSION['adm']);
+        unset($_SESSION['kyu']);
+        header('Location: ../index.php');
+    }
+    elseif($_SESSION['ativo'] > 0)
+    {
+        $logado = $_SESSION['kyu'] > 0;
+        if($_SESSION['kyu'] < 1)
+        {
+            header('Location: ../index.php');
+        }
+        else
+        {
+            /*echo "Session Kyu are set.";// retirar*/
+            if (!empty($_SESSION['id'])) {
+                $id = $_SESSION['id'];
+                $sqlSelect = "SELECT * FROM alunos WHERE id=$id";
+                $result = $conexao->query($sqlSelect);
+                if ($result->num_rows > 0)
+                {
+                    while ($user_data = mysqli_fetch_assoc($result)) {
+                        $nome = $user_data['nome'];
+                        $telefone = $user_data['telefone'];
+                        $email = $user_data['email'];
+                        $senha = $user_data['senha'];
+                        $estado = $user_data['estado'];
+                        $cidade = $user_data['cidade'];
+                        $endereco = $user_data['endereco'];
+                        $dojo = $user_data['dojo'];
+                        $sensei = $user_data['sensei'];
+                        $data_nasc = $user_data['data_nasc'];
+                        $kyu = $user_data['kyu'];
+                    }
+                }
+            }
+        }
+    }
+    else
+    {
+        header('Location: ../index.php'); // header('Location: ../checkout/index.php');
+    }
+    require_once('../views/header.php');
+    require_once('../views/nav.php');
+?>
+    <section class="section">
+
+        <div class="content">
+            <div class="accordion_item" id="01">
+                <div class="accordion_header">
+                    <span><a href="#01">Bujinkan (神武館)</a></span>
+                    <div class="icon">
+                        +
+                    </div>
+                </div>
+
+                <div class="accordion_content">
+                    <div class="grupo"> 
+                        <span>Bujinkan Budo Taijutsu</span> 
+                    </div>
+                    <div class="apostila">
+
+                        <div class="imagemA">
+                            <img src="./img/Bujinkan.png">
+                        </div>
+                        <p>Em 1972, após receber os titulos de Soke de Takamatsu Sensei, Hatsumi fundou a Bujinkan Budo Taijutsu, que significa "Casa do Guerreiro Divino", ele deu este nome em homenagem a Takamatsu Sensei.</p>
+
+                        <p>A Bujinkan foi criada para dar continuidade ao ensino do Ninjutsu através do mundo. Por conta disso Hatsumi foi condecorado pelo imperador Hirohito como uma relíquia cultural, sendo hoje considerado um patrimônio vivo para a nação japonesa.</p>
+
+                        <p>As 9 escolas passadas por Takamatsu Sensei ao Soke Hatsumi que formam A Bujinkan Budo Taijutsu.<p>
+
+                        <div class="imagemB">
+                            <img src="./img/escolas.jpg">
+                        </div>
+
+                        <p>É uma organização de artes maciais, criada pelo Dr Masaaki Hatsumi para promover a arte Ninja e as nove antigas tradições do guerreiro. Bujinkan significa “casa do guerreiro divino”, é uma organização de artes marciais conhecida como Bujinkan Budo Taijutsu.</p>
+
+                        <p>A organização é composta por um conjunto de nove escolas ou tradições (ryū), com três estilos de Ninjutsu e outros estilos da tradição Samurai e Budo. O grande mestre Masaaki Hatsumi viajava para fora do Japão todos os anos para ministrar Taikai (grande encontro ou grande estágio) em várias partes do mundo.</p>
+
+                        <p>A Bujinkan Budo Taijutsu é uma forma específica de artes marciais que é ensinada pela organização Bujinkan. A Bujinkan é uma escola de artes marciais fundada pelo mestre japonês Masaaki Hatsumi, e o Budo Taijutsu é uma das principais disciplinas ensinadas dentro da Bujinkan.</p>
+
+                        <p>Aqui estão alguns pontos-chave sobre o Bujinkan Budo Taijutsu:</p>
+
+                        <p><span>Versatilidade:</span> O Budo Taijutsu é conhecido por sua abordagem versátil e adaptável ao combate. Ele abrange uma ampla gama de técnicas que incluem golpes, chutes, bloqueios, projeções, estrangulamentos, e o uso de armas tradicionais japonesas, como a espada (katana), bastão longo (bo), bastão curto (jo), corrente (kusarigama) e shurikens, entre outros.</p>
+
+                        <p><span>Ênfase na Postura e Movimento:</span> O Budo Taijutsu coloca uma forte ênfase na postura, movimento e equilíbrio. Os praticantes aprendem a mover-se de forma eficiente, minimizando o desperdício de energia e maximizando o poder e a precisão de seus ataques e defesas.</p>
+
+                        <p><span>Técnicas de Ninja:</span> Como parte da tradição da Bujinkan, o Budo Taijutsu inclui técnicas associadas à tradição ninja. Isso pode envolver técnicas de furtividade, técnicas de escape, estratégias de combate em ambientes adversos e o uso de armas específicas dos ninjas, como o kusarigama e os shurikens.</p>
+
+                        <p><span>Abordagem Espiritual e Filosófica:</span> Além das técnicas físicas, o Bujinkan Budo Taijutsu também incorpora elementos espirituais e filosóficos. Os praticantes são encorajados a desenvolver um senso de autodisciplina, autocontrole e respeito pelos outros. A ética e os princípios morais são enfatizados na prática.</p>
+
+                        <p><span>Treinamento Prático e Realista:</span> O treinamento no Budo Taijutsu é projetado para ser prático e realista, com ênfase na aplicação das técnicas em situações reais de autodefesa. Isso inclui treinamento em situações de combate desarmado e com armas.</p>
+
+                        <p><span>Influências Múltiplas:</span> O Bujinkan Budo Taijutsu é influenciado por várias tradições de artes marciais japonesas, incluindo o Togakure-ryu Ninjutsu, o Gyokko-ryu Kosshijutsu, o Kukishinden-ryu Happo Bikenjutsu e outras. Essas influências se combinam para criar um sistema de combate holístico.</p>
+
+                        <p>Lembre-se de que a Bujinkan é uma organização que valoriza a continuidade da tradição e a relação mestre-aluno. Portanto, o treinamento na Bujinkan Budo Taijutsu é conduzido sob a orientação de instrutores qualificados dentro da organização, e a progressão através dos níveis de graduação é obtida por meio de testes rigorosos.</p>
+
+                        <p>Na Bujinkan Budo Taijutsu, cada pessoa tem a oportunidade de explorar e aplicar os conhecimentos adquiridos em seu próprio processo de treinamento. As técnicas da Bujinkan são caracterizadas pela sua naturalidade, liberdade de movimento e conceitos filosóficos, sem competições ou disputas. O objetivo é sempre o desenvolvimento humano e a preservação da vida, o que é mais precioso.</p>
+                    </div>
+                    <hr>
+
+                    <div class="grupo">
+                        <span>Graduações</span>
+                    </div>
+                    <div class="apostila">
+                        <p></p>
+                        <div class="imagemB">
+                            <img src="./img/graduacao.png">
+                        </div>
+                    </div>
+                    <hr>
+
+                    <div class="grupo">
+                        <span>Regras de participação na Bujinkan</span>
+                    </div>
+                    <div class="apostila">
+                        <p><span>Obs:</span> essas regras são para o Bujinkan Dojo no Japão. Porém, se aplicam também nas escolas pelo mundo!</p>
+                        <p>1 - A Bujinkan está aberta apenas àqueles que estejam de acordo com as regras da Bujinkan Dojo. Aqueles que não concordarem com as regras não devem ser aceitos. Especificamente: apenas aqueles que leram e concordam com estas regras devem ser permitidos participar.</p>
+                        <p>2 - Somente aqueles capazes de exercitar a verdadeira paciência, auto-controle e dedicação podem participar. Um exame médico deve ser providenciado. Especificamente, indivíduos com doenças mentais, vício em drogas ou instabilidade mental devem ser proibidos de entrar. A necessidade de tal exame diz respeito a indivíduos que podem apresentar perigo a outros, por exemplo, aqueles com doenças infecciosas, indivíduos com personalidade ou fisiologia clinicamente anormais e indivíduos que não tenham auto-controle.</p>
+                        <p>3 - Indivíduos com ficha criminal devem ser recusados. Arruaceiros, criminosos e aqueles que moram no Japão e infringem as leis domésticas devem ser barrados.</p>
+                        <p>4 - Aqueles que não estiverem seguindo as regras da Bujinkan, ou como praticantes ou como membros da sociedade, cometendo atos vergonhosos ou reprováveis devem ser expulsos. Até agora, a Bujinkan estava aberta para um grande número de pessoas que foi ao Japão. Entre elas, infelizmente, estavam aqueles que cometiam atos violentos embriagados, os doentes mentais e arruaceiros que pensavam apenas para si mesmos e falhavam em ver que suas ações podiam afetar outros de forma adversa. Através de suas atitudes, estas pessoas estavam descartando o tradicional coração benevolente da Bujinkan. Deste dia em diante, todas estas pessoas devem ser expulsas.</p>
+                        <p>5 - Com relação a acidentes ocorridos durante o treinamento (tanto dentro quanto fora do dojo), não se deve trazer problemas à Bujinkan, Este é um ponto muito importante. Aqueles que não estejam dispostos a tomar responsabilidade pessoal por acidentes ocorridos durante o treinamento Bujinkan não devem ser aceitos. Retomando com mais clareza, a Bujinkan não tomará responsabilidade por quaisquer acidentes ocorridos no curso do treinamento, independente da localidade.</p>
+                        <p>6 - Todos aqueles que entrarem na Bujinkan devem adquirir a member (cartão de sócio). Este cartão preserva a honra dos membros da Bujinkan e indica que você é parte de um grande todo cujos membros se juntam como corações guerreiros para melhorarem a si mesmos através do treinamento e da amizade. Ele evidência a glória da virtude guerreira e encorpora tanto a lealdade quanto o amor fraternal.</p>
+                        <p>7 - A tradição da Bujinkan reconhece a natureza e o universo de toda vida humana e está ciente daquilo que flui naturalmente entre as duas partes:</p>
+                        <p>"O princípio secreto do Taijutsu é conhecer os fundamentos da paz."</p>
+                        <p>"Estudar é o caminho para o coração inabalável (fudoshin)."</p>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="accordion_item" id="02">
+                <div class="accordion_header">
+                    <span><a href="#02">Masaaki Hatsumi (初見良昭)</a></span>
+                    <div class="icon">
+                        +
+                    </div>
+                </div>
+                <div class="accordion_content">
+
+                    <div class="grupo">
+                        <span>Quem é Masaaki Hatsumi (初見良昭)?</span>
+                    </div>
+                    <div class="apostila">
+                        <p>Nascido Yoshiaki Hatsumi, em 2 de dezembro de 1931 é um Soke, lutador, coreógrafo e médico japonês. Fundador e atual patriarca do Bujinkan, é o ex-discípulo e sucessor das tradições mantidas por Toshitsugu Takamatsu, o último ninja autêntico. Atualmente reside e ensina na cidade de Noda, Chiba no Japão. Graduado na universidade de medicina Meiji em Tokyo como traumatologista, é diretor de sua própria clínica na cidade de Noda.</p>
+                        <div class="imagemB">
+                            <img src="./img/Masaaki-Hatsumi.jpg">
+                        </div>
+                        <p>SOKE Masaaki Hatsumi nasceu na cidade de Noda, na província de Chiba, em 2 de dezembro de 1931. Ele graduou-se na Universidade Meiji, de Tóquio, hoje ele é o diretor de sua própria clínica na cidade de Noda, sendo considerado um dos maiores traumatologistas do Japão. Amante da arte também inspira-se a pintar verdadeiras obras com quadros expostos em todo o mundo.</p>
+                        <p>Autor do famoso livro Stick Fighting; que trata sobre a arte do bastão segundo o método Kukishinden, que é bem conhecido em todo os Estados Unidos, e muitos outros encontrados em todo o mundo.</p>
+                        <p>Quinto Dan de Karate, é também expert em outras disciplinas tais como o Bo, a Naginata, o Yari, o Tai Jutsu, o Aiki Jujutsu, o Judo, etc. Como praticante de Judo, foi várias vezes campeão; como instrutor da modalidade, ministrava aulas na base aérea Americana. Conta-se que era evidente a vantagem dos soldados americanos devido à natureza de suas estaturas, foi quando percebera a limitação de suas técnicas. Dessa forma viajaria pelo Japão buscando uma arte marcial que superasse os limites físicos independente de quem a praticasse.</p>
+                        <p>Um certo dia soube de um mestre, e em seguida foi a seu encontro. Chegando a residência do tal mestre, conta- se que estava muito ansioso para conhecer aquele grande guerreiro que ouviu falar.</p>
+                        <p>Ao deparar-se com aquele homem baixo e franzino, por um instante ficou em dúvida de sua busca. Mas naquele momento foi surpreendido por um olhar gélido que iniciava em seus pés e ia subindo paralisando seu corpo até chegar em seus olhos, onde sentiu um medo indescritível, em que só lhe passava pela cabeça sair daquele local o mais rápido possível, aquele homem baixo e franzino era o grande mestre Toshitsugu Takamatsu, herdeiro de nove tradições, entre elas as lendárias e temidas habilidades do Ninjutsu.</p>
+                        <p>Desse encontro surgiu uma grande amizade. De 1950 até meados da década de 60, viajou continuamente através do Japão para estudar com Toshitsugu Takamatsu na cidade de Kashiwara, província de Nara, de quem havia recebido sua iniciação nos caminhos do Ninpo. Durante anos Hatsumi Sensei sofreu um duro treinamento com a direção do grande mestre Takamatsu.</p>
+                        <p></p>
+                        <span><b>Seishin Teki Kyoyo</b></span>
+                        <p>Meu mestre Takamatsu em um dado momento me disse que eu jamais seria um Meijin, mas sim um Tatsujin.</p>
+                        <p>Fiquei muito desiludido quando ouvi isto, por que pensei ter conhecido o suficiente para alcançar um nível Meijin (mestre das artes de luta).</p>
+                        <p>Mesmo com o passar do tempo Takamatsu não explicou-me o verdadeiro significado da palavra "Tatsujin". Com os anos de treinamento e estudo eu havia percebido o significado da palavra "Tatsujin" e percebi o quanto importante e valoroso era aquele título.</p>
+                        <p>Não é necessário estar obcecado para saber quem é mais forte ou mais fraco, para se viver como ser humano. Um animal sim necessita ser forte para viver em seu habitar, mas as pessoas podem viver sem terem que provar uma para a outra quem é melhor do que quem. Esta é a característica mais maravilhosa do Ninjutsu.</p>
+                        <p>Foi o que aprendi com meu mestre Toshitsugu Takamatsu.</p>
+                        <p></p>
+                        <span><b>Seishin Teki Kyoyo</b></span>
+                        <p>Takamatsu Sensei um ano antes de sua morte me disse que havia me ensinado tudo, "absolutamente" tudo que ele sabia. Considerou que havia cumprido com sua obrigação de passar os ensinamentos das linhagens que ele havia recebido. Desde este momento ele iria dedicar todo o seu tempo à prática espiritual.</p>
+                        <p>Quando me disse isto me senti completamente abandonado, foi o momento de maior solidão da minha vida. Senti que eu não era suficientemente bom para seguir sozinho.</p>
+                        <p>Reconheço que me intrigava, que um lutador como ele estivera tão interessado no estudo espiritual e pensei durante longo tempo, sobre o equilíbrio entre o estudo religioso e a prática das artes marciais.</p>
+                        <p>A religião deve ser adequada, à aquela que irá converter uma pessoa melhor e mais forte. É natural que a religião mude de acordo com o lugar de onde vem. Em japonês, religião (Shukyo) se escreve com caracteres que significam essencial ensinamento para os seres humanos. São ensinamentos muito básicos e muito importantes que somente trocam sua forma em lugares distintos. Sendo quente ou frio, próspero ou pobre, por exemplo: Se as pessoas vivem num lugar e dependem da água para sobreviver é seguro que criem um Deus da água.</p>
+                        <p></p>
+                        <span><b>Hatsumi Sensei - 1988 Japão</b></span>
+                        <p>Masaaki Hatsumi recebeu de seu mestre a autoridade e a posição de herdeiro sucessor em linha direta dos mestres e discípulos, remontados a sete séculos atrás vindo a tornar-se o Grande Mestre das nove tradições marciais japonesa.</p>
+                        <p></p>
+                        <p>34º Soke	da Togakure Ryu Ninjutsu Happo Hikenjutsu. Fundada por Daisuke Nishina por volta de 1100.</p>
+                        <p>28º Soke	da Gyokko Ryu Koshijutsu Happo Hikenjutsu. Fundada por Tozawa Hakkunsai por volta de 1100.</p>
+                        <p>26º Soke da Shinden Fudo Ryu Dakentaijutsu Happo Hikenjutsu. Fundada por Izumo Kanja Yoshiteru por volta de 1100.</p>
+                        <p>26º Soke	da Kukishinden Ryu	Taijutsu Happo Hikenjutsu. Fundada por Izumo Kanja Yoshiteru por volta de 1300.</p>
+                        <p>21º Soke da Gyokushin Ryu Ninjutsu Happo Hikenjutsu. Fundada por Sasaki Goemon Teroyoshi por volta de 1500.</p>
+                        <p>18º Soke da Koto Ryu Koppojutsu Happo Hikenjutsu. Fundada por Sakagami Taro Kunishige por volta de 1500.</p>
+                        <p>17º Soke da Takagi Yoshin Ryu Jutaijutsu Happo Hikenjutsu. Fundada por Takagi Oriuemon Shigenobu por volta de 1500.</p>
+                        <p>15º Soke da Gikan Ryu Koppojutsu Happo Hikenjutsu. Fundada por Uryu Hangan Gikanbo por volta de 1500.</p>
+                        <p>14º Soke da Kumogakure Ryu Ninjutsu Happo Hikenjutsu. Fundada por Heinaizaemon Ienaga Iga por volta de 1500.</p>
+                        <p></p>
+                        <p>Hatsumi Sensei criou um sistema único de treinamento englobando as nove escolas herdadas de seu mestre, no início denominado Ninpo Tai Jutsu e em seguida viria a abrir as portas da filosofia Ninpo aos primeiros alunos ocidentais, sendo que a um ano atrás mudaria de Ninpo Tai Jutsu para Budo Tai Jutsu . Foi fundando a partir de 1972 a então conhecida hoje: Bujinkan Budo Tai Jutsu. O termo Bujinkan significa: "A Morada do Guerreiro Divino" assim como "A Casa do Deus Guerreiro", lembrando que este termo foi uma criação de Sensei Hatsumi em homenagem a seu mestre Toshitsugu Takamatsu.</p>
+                        <p>Hatsumi havia tido o imenso privilégio de treinar durante vários anos com a direção do grande mestre Toshitsugu Takamatsu, sendo na atualidade um dos maiores especialistas japoneses no manejo de armas e condecorado pelo imperador Hiroito como uma relíquia cultural, sendo hoje considerado um patrimônio vivo para a nação japonesa.</p>
+                        <p>O treinamento que impõe a si mesmo diariamente é muito duro e traz umas regras muito escrupulosas, como as duchas geladas matutinas, com a finalidade de ganhar uma energia especial, nada de álcool, tabaco, etc. Isto o faz ter uma mentalidade nada comum entre os artistas marciais.</p>
+                        <p>Junto a esta fortaleza de seu espírito, Hatsumi possui uma gentileza e uma simplicidade de caráter extraordinária. Os melhores mestres do Budo chegam a ele para aprender técnicas que a muito tempo são ouvidas, as quais se encontram escritas em papiros chamados Toramaki (documentos do tigre) ou Makimono (documenos secretos) onde estão registrados, codificados e englobados junto a um treinamento psíquico e mental ocultos.</p>
+                        <p>O Dojo de Hatsumi encontra-se em Noda, junto a grande cidade de Tokyo. Seu interesse está centrado em manter o patrimônio cultural do Japão e conservar vivas as técnicas da arte do Ninjutsu. Graças a ele, esta arte permite progredir por si mesmo ao indivíduo, o que motivará uma troca de sociedade. Pois teve fim a época de espionagem e a morte na antiga arte.</p>
+                    </div>
+                    <hr>
+
+                    <div class="grupo">
+                        <span>História</span>
+                    </div>
+                    <div class="apostila">
+                        <p>Hatsumi iniciou seu caminho nas Artes Marciais com o Kendô, aos 7 anos de idade, e quando jovem praticou Judô e Karatê. Também foi praticante de Ginástica Olímpica, balé e futebol, chegando a ser o capitão do time. Na Universidade praticou Boxe e Judô, chegando a 4º Dan, e ainda estudou teatro.</p>
+                        <p>Graduou-se na universidade de Meiji em Tokyo, e logo tornou-se um quiroprata.</p>
+                        <p>Após a 2ª Grande Guerra Mundial, Hatsumi passou a ensinar Judô aos soldados americanos na base militar de Yokota, e por volta dos 20 anos de idade, passou a se questionar sobre o sentido de praticar uma arte marcial, pois uma pessoa maior e mais forte passava a ganhar de uma pessoa mais graduada, sobrepujando a força fisica a técnica.</p>
+                        <p>A partir disso, passou a buscar uma arte marcial que fosse eficaz para qualquer situação, assim aos 26 anos de idade, através da indicação de um antigo mestre de Kobudô, Soke Hatsumi encontrou seu último mestre, Toshitsugu Takamatsu, na cidade de Kashiwabara, e ficou assustado, pois não conseguia entender como uma pessoa com idade tão avançada e tão baixa estatura podia passar uma sensação de morte tão forte.</p>
+                        <p>Hatsumi foi aluno de Takamatsu Sensei durante os anos 50 e 60. Hatsumi Sensei treinou constantemente com Takamatsu Sensei durante 15 anos. Antes de falecer, Takamatsu Sensei transmitiu a Hatsumi Sensei o título de Soke, ou seja, títular de todo conhecimento antes guardado por ele, junto com toda antiga documentação, tornando Hatsumi, Soke de todas as Artes Marciais que lhe tinham sido transmitidas.</p>
+                        <p>Hatsumi também pintou diversos quadros no estilo Nihonga, tendo suas obras expostas na galeria Nagai em Tóquio e em Paris. Como escritor, Masaaki Hatsumi escreveu diversos livros sobre artes marciais. Também atuou no seriado tokusatsu Sekai Ninja Sen Jiraiya, fazendo o papel de Tetsuzan Yamashi. E participou de outros filmes e seriados como diretor e também como coreógrafo.</p>
+                        <p>Uma das histórias de Masaaki Hatsumi ocorreu que em um certo dia pensou que iria morrer por causa de uma doença. Com este pensamento, ele passou os nove pergaminhos a nove de seus alunos. Muito tempo depois, Hatsumi nao faleceu como achara e pediu os pergaminhos de volta, mas apenas oito de seus alunos entregaram seus pergaminhos, enquanto um deles não o entregou, tendo o mestre, então, que tomá-lo a força.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion_item" id="03">
+                <div class="accordion_header">
+                    <span><a href="#03">Toshitsugu Takamatsu (高松 寿嗣)</a></span>
+                    <div class="icon">
+                        +
+                    </div>
+                </div>
+                <div class="accordion_content">
+                    <div class="grupo">
+                        <span>Quem foi Toshitsugu Takamatsu (高松 寿嗣)</span>
+                    </div>
+                    <div class="apostila">
+                        <p>Nascido com o primeiro nome de Hisatsugu, mudou depois, usando o mesmo kanji, porém com pronúncia diferente (Akashi, 10 de março de 1887 – 2 de abril de 1972) é conhecido entre outros artistas marciais por diversos nomes: Jutaro, Chosui, Uoh, Kotengu (pequeno goblin), Moko no Tora (tigre da mongólia), Kikaku (Chifres de demônio), Yokuoh, Kotaro (Jovem gato), Shojuken, Garakutabujin, Kozan e Kyosha.</p>
+                        <div class="imagemB">
+                            <img src="./img/Toshitsugu-Takamatsu.jpg">
+                        </div>
+                    </div>
+                    <hr>
+
+                    <div class="grupo">
+                        <span>História</span>
+                    </div>
+                    <div class="apostila">
+                        <p>Nasceu no Japão em 10 de março de 1887, na cidade de Akashi, de uma família acomodada, proprietários de uma fábrica. Chamado Hisatsugu por seus pais, ele mudou seu nome mais tarde para Toshitsugu. Assistia a escola inglesa de Kobe, cursando depois estudos no colégio Chinês de Literatura. Amante da arte e da poesia.</p>
+                        <p>Durante sua vida foi conhecido pelos seus vários apelidos, Nakimushi (bebê chorão), Neko no Yamamoto (o gatinho de Yamamoto), à Kikaku (chifres do demônio), à Moko no Tora (tigre da Mongólia). Agora é mantido em memória como o Bujin (o guerreiro divino) de Bujinkan, nomeado em sua honra por Sensei Hatsumi.</p>
+                        <p>Foi iniciado no Ninjutsu aos 9 anos de idade por seu tio, o qual pertenceu à classe samurai na província de Iga e por seu avô Masamitsu Toda, que foi supervisor dos mestres de espada nas escolas do governo de Tokugawa Shogun e agora tinha um Dojo e uma clínica de ossos em Kobe. Tendo instruído seu neto inicialmente nas escolas Koto Ryu e Togakure Ryu, todo dia depois da escola ele podia ir ao Dojo para instrução pessoal pelo Sensei Toda.</p>
+                        <p>Inicialmente, não foi falado nem mesmo ensinado à ele nenhuma técnica, simplesmente foi arremessado em volta do Dojo pelo Sensei Toda até o sangue escorrer de seus joelhos e cotovelos. Sensei Takamatsu dizia depois que cada dia em seu caminho para o Dojo, ele se sentia um cordeiro sendo deixado no abatedouro. Depois de um ano cheio daqueles respectivos arremessos, Takamatsu começou a aprender a verdadeira técnica.</p>
+                        <p>Do Sensei Toda ele herdou os estilos de Shinden Fudo Ryu Jujutsu, Gyokko Ryu Koshijutsu, Shinken Koto Ryu Karatejutsu, Koto Ryu Koppojutsu, Gyokushin Ryu Ninjutsu, Kumogakure Ryu Ninjutsu e Togakure Ryu Ninjutsu.</p>
+                        <p>Seu pai Yosoburo educou-o para que seguisse a carreira militar, mas numa briga ainda jovem, sofreu uma rotura no tímpano, tendo ficado isento da mesma.</p>
+                        <p>Quando criança seu nome era Jutaro. Aos seus 13 anos praticava diariamente a arte de Koto Ryu Koppojutsu para adquirir sua licença Shinden Fudo Ryu. Nessa idade venceu um lutador profissional de Sumô de 143 kg.</p>
+                        <p>Dois anos depois era chamado de Kotora (pequeno tigre). Esse mesmo ano, o jovem Jutaro, no Dojo de Masamitsu Toda (32º. Grão mestre da Togakure Ryu), lutou e venceu ao seu oponente com um Gyaku Ganseki Otoshi (lançar o adversário ao chão de cabeça).</p>
+                        <p>Por volta dos 13 anos, enquanto estudava em uma escola Inglesa em Kobe, Jutaro entrou para o Dojo de Misuta Yoshitero Tadafusa onde treinava dia sim dia não para aprender o estilo Takagi Yoshin Ryu.</p>
+                        <p>Aos 17 anos, na fábrica de seu pai conheceu Takakage Matsutaro Ishitani (cujos antepassados tinham sido Chunin Ninjas nas tropas de Jonin Hanzo Hattori, da escola de Iga Ryu) que prestava serviços de segurança na fábrica de Kobe.</p>
+                        
+                        <p>Ishitani soube que havia encontrado herdeiro para sua arte Kukishinden Ryu. Depois de anos de intenso treino concederam-se os pergaminhos secretos (Densho) e o título de 27.º grande mestre de Kukishinden Ryu Happo Hiken Jutsu, além dos estilos Hontai Takagi Yoshin Ryu e Gikan Ryu Koppojutsu.</p>
+                        <p>Aos 21 anos partiu para China, regressando depois, já falecida a sua noiva Kokane, Jutaro adoeceu de beriberi (solitária) e tinha afetado os pulmões. A sua avó tratava dele mas seu pai mandou-o regressar para não ir contra a lei dos Ninjas mesmo que a vida lhe custasse. Para evitar um confronto entre sua avó e seu pai, Jutaro abandonou a casa de sua avó na ausência dela. Dirigiu-se à montanha Mayasan (Maya era mãe de Buda), instalando-se nas cataratas das tartarugas. Durante a sua doença recordava os ensinamentos de seus mestres Toda, Ishitani e Mizuta.</p>
+                        <p>Um ancião eremita curou-o e ensinou-lhe os segredos da natureza. Quando se sentiu curado das suas doenças praticava ao amanhecer na cascata exercícios de Koto e Togakure Ryu. Quando estava em perfeito estado tomou o nome de Kikaku (chifres do diabo).</p>
+                        <p>Depois de permanecer vários meses mais nas montanhas viajou através da China estudando com os melhores mestres de boxe. Competiu em várias provações e nunca foi derrotado. Neste tempo ganhou o apelido "Moko No Tora" (Tigre da Mongólia).</p>
+                        <p>Jutaro esteve na China durante 10 anos após a morte de sua noiva, por lá foi empregado por muitos mestres da guerra na Manchuria e na China setentrional. Durante esse tempo a reputação de Jutaro era a de um guerreiro completamente formado. Lutou várias vezes como resultado de desafios pessoais.</p>
+                        <p>A idade de 26 anos foi desafiado por um mestre de Shaolin Kung Fu de 113 kg chamado Cho Shiryu. A terceira vez que desafiou, Jutaro aceitou. Concebeu num sonho a técnica do "Baile da Borboleta". No sonho viu um demônio vermelho, que com uma pesada barra de ferro, tentava apanhar uma pequena borboleta, mas esta, sem esforço, esquivava dos golpes. O combate teve lugar na praça da colônia inglesa e o árbitro foi o nobre senhor Ren, tio do imperador da China. Depois de duas horas de combate os movimentos de Cho Shiryu tinham se tornado lentos (ponto fraco dos lutadores pesados), a sua visão estava nublada pelo constante suor. Jutaro limitara-se a se esquivar. No fim o senhor Ren parou o combate porque Cho Shiryu não tinha oportunidade de ganhar. Deste confronto nasceu uma irmandade entre ambos os oponentes.</p>
+                        <p>Enquanto esteve na China, a família Kuki detentores da Kukishinden Ryu, perderam o contato com ele, duvidando que ele retornaria ao Japão, foi então que concederam a Iuani Nangaku o título de herdeiro dos ensinamentos da escola, assim quando Takamatsu eventualmente voltasse, sua posição tinha sido preenchida. Em seguida, as escrituras e documentos da família Kuki foram destruídas pelo fogo. Mas Sensei Takamatsu foi hábil para reconstrui-los, de suas notas e memórias e presenteando-os para a família Kuki.</p>
+                        <p>Pelos seus serviços ele teve a permissão para criar uma sub-escola chamada Kukishinden Ryu contendo o que ele pensou ser melhor e mais apropriado para os ensinamentos Kukishinden.</p>
+                        <p>Seus professores Toda, Mizuta e Ishitani tinham passado todos os caminhos por esse tempo e Sensei Takamatsu agora treinava um pequeno grupo de estudantes em um Dojo que ele chamou de Sakushin.</p>
+                        <p>Em 1919 voltou para casa e dedicou-se à estudar os ensinamentos da seita budista tântrica Mikko.  Posteriormente, aos 30 anos de idade foi ordenado sacerdote Mikko Thendai-shu no mosteiro Hihei de Kyoto.</p>
+                        
+                        <p>Tinha encontrado o equilíbrio perfeito ao poder espiritual e ao poder do guerreiro.</p>
+                        <p>Takamatsu Sensei estava uma vez em uma loja, quando vários gângsters da Yakuza entraram e exigiram dinheiro de proteção do dono assustado. Takamatsu agarrou um deles, e o prendeu na loja. Os outros ele mandou de volta ao chefe deles e lhes disse que digam que " Jutaro " (um nome ele usou na mocidade) estava na cidade. O chefe enviou uma mensagem que dizendo que a loja permaneceria só. Não é conhecido se o chefe de Yakuza fosse um amigo de Takamatsu, ou se ele tivesse sido derrotado em uma briga por Takamatsu quando criança.</p>
+                        <p>Aproximadamente em seus 65 anos, enquanto ele estava a caminhar, ele se encontrou com vários homens que batiam em um homem velho e na filha jovem dele. Os assassinos tinham estado hostilizando o homem por dinheiro de proteção que era algo que ele não pôde dispor. Takamatsu pisou adiante, e lhes disse que deixassem o homem só. A quadrilha não tinha medo de Takamatsu, até que ele chamou o líder deles de "Bozo" (menino de cabeça raspada). Chamando o líder deles de Bozo era um insulto que poucos ousariam dizer.</p>
+                        <p>Takamatsu disse novamente que eles deveriam deixar o homem e a filha dele só, e então ele lhes disse para voltar para o chefe deles e lhe contar que Moko No Tora (Tigre mongol) dizia que eles deveriam deixar estas pessoas sós. Bozo enviou um dos homens dele ao líder da quadrilha que tinha herdado a quadrilha de mais de 15.000 homens de seu pai. Ele apressou-se imediatamente à cena para ver Takamatsu. Ele disse que pensou que Moko No Tora estava morto. Imediatamente ele concordou em deixar a família só, com medo de Takamatsu. O líder enviou pacotes de flores então à família em desculpa.</p>
+                        <p>Na recente década de 60, Takamatsu Sensei escreveu uma série de artigos no Japão Times (importante meio de comunicação do Japão). Todos estes artigos falaram de Ninjutsu, do Budo e Bujutsu. Em um dos artigos, escreveu Takamatsu que quando lutando em verdadeiras artes marciais, você deve acima de tudo estar preparado para matar seu atacante, ou matar a pessoa que você está atacando.</p>
+                        <p>Em resposta para isto, um professor de Karatê japonês que ocupava uma posição muito alta foi na televisão japonesa e disse que o que Takamatsu tinha escrito estava errado, que esses dias não tinham existidos ou existiram a muito tempo e já nem precisavam existir qualquer pessoa mais nesta idade presente. Ele também declarou que pensa que Takamatsu era um " velho ", estando vivendo em cima de longos 80 anos passados.</p>
+                        <p>Takamatsu Sensei declarou em outra entrevista longa que ele era "o próprio passado", e viu os comentários do professor de Karatê como um desafio que ele desejou aceitar. Ele deu para o professor de Karatê três dias para retratar as declarações publicamente. Se não, Takamatsu Sensei pretendia lutar e o matar, com as mãos amarradas atrás das costas.</p>
+                        <p>Três dias depois, a declaração feita pelo professor de Karatê foi retratada.</p>
+                        <p>Depois de seus anos como sacerdote, Takamatsu casou-se aos 32 anos em matrimônio com a jovem Tane, indo morar à oeste de Iga, em Kashiwara City.</p>
+                        <p>Por volta dos seus 70 anos conheceu seu melhor estudante e amigo, Masaaki Hatsumi, com qual treinou durante mais 15 anos na cidade de Nara.</p>
+                        <p>Ao fim de seus dias nomeou a Masaaki Hatsumi, Soke dos 9 Ryus que integram a Bujinkan. Morreu a 2 de abril de 1972 à idade de 85 anos.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion_item" id="04">
+                <div class="accordion_header">
+                    <span><a href="#04">Ninja (忍者) ou Shinobi (忍び)</a></span> 
+                    <div class="icon">
+                        +
+                    </div>
+                </div>
+                <div class="accordion_content">
+                    <div class="grupo">
+                        <span>OS Guerreiros das Sombras</span>
+                    </div>
+                    <div class="apostila">
+                        <p>O significado de Ninja: NIN (忍) oculto/despercebido, JA (者) pessoa. Logo o significado é Pessoa Oculta.</p>
+                        <p>Um ninja (忍者) ou shinobi (忍び) era um agente secreto ou mercenário do Japão feudal especializado em artes de guerra não ortodoxas. As funções do ninja incluíam espionagem, sabotagem, infiltração, assassinato e guerrilha assim como combate aberto em determinadas situações. Os ninjas, utilizando métodos secretos de fazer guerra, eram contrastados com os samurais, que tinham regras restritas sobre a honra e combate. Assim como existiam samurai mulheres, existiam ninja mulheres chamadas de kunoichi. O próprio "shinobi", um grupo de espiões e mercenários especialmente treinados, apareceu no século XV durante o período Sengoku, mas podem ter existido antes no século XIV, e possivelmente no século XII (Heian ou no início da era Kamakura).</p>
+                        <p>Na agitação do período Sengoku (séculos XV-XVII), mercenários e espiões disponíveis para contratar, se tornaram ativos na Província de Iga e a área adjacente ao redor da aldeia de Kōga, e é dos clãs da área que muito do conhecimento dos ninjas é desenhado. Após a unificação do Japão sob o Xogunato Tokugawa (século XVII), os ninjas desapareceram na escuridão. Um número de manuais shinobi, muitas vezes baseados em filosofias chinesas, foram escritos nos séculos XVII e XVIII, mais notavelmente o Bansenshukai (1676).</p>
+                        <p>Na época da Restauração Meiji (1868), a tradição do "shinobi" tornou-se um tema misterioso e do imaginário popular no Japão. O Ninja figurou proeminente na lenda e no folclore, onde foram associados com habilidades lendárias, como invisibilidade, andar sobre a água e controle sobre os elementos. Como consequência, suas percepção na cultura popular geralmente se baseiam mais em lendas e folclores do que nos espiões do período de Sengoku.</p>
+                    </div>
+                    <hr>
+
+                    <div class="grupo">
+                        <span>Historia</span>
+                    </div>
+                    <div class="apostila">
+                        <p>A origem dos ninjas é obscura e difícil de determinar, mas presume-se que foi por volta do século XIV. No entanto, os antecedentes dos ninjas podem ter existido tão cedo quanto o Heian e no início da era Kamakura. Existem poucos registros escritos para detalhar as atividades do ninja. A palavra jounin não existia para descrever um ninja como agente até o século XV, e é improvável que os espiões e mercenários antes dessa época fossem vistos como um grupo especializado. Na agitação do período Sengoku (séculos XV - XVII), mercenários e espiões contratados surgiram das regiões de Iga e Koga no Japão, e é a partir desses clãs que muito do conhecimento posterior sobre os ninjas é inferido. Após a unificação do Japão sob o xogunato Tokugawa, os ninjas caíram novamente no esquecimento. No entanto, nos séculos XVII e XVIII, manuais como o Bansenshukai (1676), muitas vezes centrados em torno da filosofia militar da China, apareceram em número significativo. Estes escritos revelaram uma variedade de filosofias, crenças religiosas, a sua aplicação na guerra, bem como as técnicas de espionagem que formam a base da arte ninja. A palavra Ninjutsu mais tarde viria a descrever uma grande variedade de práticas relacionadas com os ninja.</p>
+                        <p>A natureza misteriosa dos ninjas capturou a imaginação popular no Japão, e depois o resto do mundo. Ninja são figuras proeminentes no folclore e lendas, e como resultado muitas vezes é difícil separar fato histórico e mito. Algumas habilidades lendárias incluem invisibilidade, andar sobre a água, e controle sobre os elementos naturais. O ninja também é prevalente em cultura popular, aparecendo em várias formas de mídias de entretenimento.</p>
+                    </div>
+
+                </div>
+            </div>
+        
+            <div class="accordion_item" id="05">
+                <div class="accordion_header">
+                    <span><a href="#05">Samurai (侍)</a></span> 
+                    <div class="icon">
+                        +
+                    </div>
+                </div>
+                <div class="accordion_content">
+                    <div class="grupo">
+                        <span>Samurais: Os Servos dos Impérios</span>
+                    </div>
+                    <div class="apostila">
+                        <p>Samurai (侍 samurai?, em português "servo", masculino) ou Bushi (武士? em português "guerreiro") e Onna-bugeisha (女武芸者? , feminino), Inicialmente era um servidor civil do império japonês, com as funções de cobrador de impostos (coletoria) e administrador de terras (daimyō). Durante o período do Japão feudal, ganhou funções militares e virou um soldado da aristocracia imperial, no período de 930 a 1877, terminando a era como um ronin duelista (samurai desonrado) ou mestre de artes, como artesanato, pintura, ou de chá.</p>
+                        <p>A coletoria era exercida exclusivamente pelo sexo masculino. O coletor, com porte robusto e semi-alfabetizado, cobrava impostos dos camponeses e estabelecia a ordem em caso de revolta.</p>
+                        <p>Na época feudal, já com funções militares, o samurai seguia o código de honra denominado Bushidô (caminho do guerreiro, desenvolvido nos séculos IX e XII), que ensinava as principais características do samurai (semelhante ao conceito da cavalaria medieval): frugalidade, grande disciplina, lealdade, honra até a morte, habilidade com a espada katana, coragem extrema diante de qualquer situação.</p>
+                        <p>Em 1185, Os samurais tornaram-se a classe dominante do Japão, com a fundação do Primeiro Xogunato (regime militar feudal Período Kamakura) pelo comandante do exército Minamoto no Yoritomo, conhecido como "Xogunato Kamakura".[1] Mas em 1868, com a restauração Meiji, os samurais perderam o poder para o imperador e declinaram rapidamente, sendo perseguidos e exterminados nove anos depois, no fim da Rebelião Satsuma.</p>
+                        <p>Um samurai não ligado a um clã ou daimyō (senhor de terras) era chamado de rōnin (traduzido do japonês significa "homem onda"). São também samurais desempregados ou que largaram a honra e não cumpriram com o ritual do seppuku (ato de repor a honra do clã ou família). Samurai ao serviço de um han (propriedade) era chamado de Hanshi (範士?) (pessoa experta de alto nível, um instrutor de instrutores).</p>
+                        <p>Tal relação de suserania e vassalagem era semelhante à da Europa medieval, entre os senhores feudais e seus cavaleiros. Entretanto, o que difere o samurai de outros guerreiros da antiguidade é o modo de encarar a vida e seu peculiar código de honra e ética.</p>
+                        <p>Eram chamados de Ronin (浪人?) os samurai desempregados, aqueles que ainda não tinham um daimyo (senhor de terras) para servir, ou quando o senhor morria, ou quando eram destituídos do cargo - princípio básico de lealdade do guia bushido. Ronin era considerado a mais profunda forma de penitência de um guerreiro, estando ele preso a uma vida desonrosa, sem um sentido para sua existência.</p>
+                    </div>
+                    <hr>
+
+                    <div class="grupo">
+                        <span>Arte Samurai</span>
+                    </div>
+                    <div class="apostila">
+                        <p>Os samurai prezavam particularmente o treinamento militar. Através das artes marciais, era fortalecida tanto a sua técnica quanto o seu espírito. Mais do que acertar um alvo com sua flecha ou cortar algo com sua espada, um samurai sempre visava refinar seu espírito, com a autodisciplina e o autocontrole, para assim estar sempre preparado para as situações mais adversas possíveis.</p>
+                        <p>Tal preocupação com o espírito que ajudou as artes samurai a se salvar de sua extinção na Restauração Meiji (época em que os samurais viraram burocratas a serviço do governo). O Koryū (ou Kobudo), como são conhecidos os estilos de combate criados pelos samurai ainda é praticado atualmente. Envolve uma grande gama de armas diferente e técnicas, como o Kenjutsu (combater com espadas), Iaijutsu (desembainhar a espada em combate), Naginatajutsu (luta com alabarda), Sōjutsu ou Yarijutsu (arte da lança), Jojutsu e Bōjutsu (arte do bastão).</p>
+                        <p>A maioria destas artes tiveram versões modernizadas (Gendai budō) no século XX, como por exemplo: Kendō, Karatê, Iaidō, Jōdō, Aikido, Judô. Tanto o Kobudo como o Gendai Budo e Hapkido são praticados hoje em dia, muitas vezes se complementando.</p>
+                        <h3>Armadura</h3>
+                        <p>Uma armadura típica dos samurai era composta por diversos detalhes importantes, sofrendo mudanças de acordo com o período histórico, o clã e a classe do samurai. As usadas para batalhas a cavalos, chegavam a pesar até quarenta quilos.</p>
+                        <li><span>Suneate:</span> Duas lâminas verticais presas na tíbia por juntas ou correntes.</li>
+                        <li><span>Haidate:</span> Protetor de coxas, com a parte inferior sobreposta de lâminas de metal ou couro.</li>
+                        <li><span>Yugate:</span> Luvas feitas de couro</li>
+                        <li><span>Kotê:</span> São as mangas que protegiam os antebraços e punhos, poderiam ser feitas de diversos materiais, como tecido, couro ou lâminas de metal.</li>
+                        <li><span>Dô:</span> Protetor para o abdômen.</li>
+                        <li><span>Kusazuri:</span> Um tipo de saia feita de lâminas de metal presas a um cinto de couro e amarradas no Dô, servia para proteger o quadril e as coxas.</li>
+                        <li><span>Uwa-obi:</span> Cinto feito de linho e algodão que amarrava o Dô.</li>
+                        <li><span>Sode:</span> Protetor de ombros feito de lâminas de metal.</li>
+                        <li><span>Hoate:</span> Máscara que variavam muito de modelo, conforme o período.</li>
+                        <li><span>Kabuto:</span> Capacete, que também variavam muito de modelo, conforme o período. Simbolizavam o poder e status do samurai.</li>
+                        <li><span>Horo:</span> Capa, feita de seda utilizada como aparador de flechas, também levava consigo o desenho do clã o qual o samurai participava.</li>
+                    </div>
+                    <hr>
+                    
+                    <div class="grupo">
+                        <span>Nomenclatura</span>
+                    </div>
+                    <div class="apostila">
+                        <p>O termo "samurai", traduzido do japonês significa "aquele que serve". Portanto, sua maior função era servir, com lealdade e empenho. Em troca disso recebiam privilégios, como terras e/ou pagamentos que geralmente eram efetuados em arroz, numa medida denominada koku (200 litros).</p>
+                        <p>No século X, com o ganho de função militar o termo bushi (武士) foi associado ao samurai, traduzido do japonês significa "guerreiro" ou "homem de armas" que era usado durante o período Edo. Mas refere-se à "nobreza guerreira" e não "infantaria alistada". Mais ao longo do tempo, durante a era Tokugawa (Período Edo), eles perderam gradualmente a função militar.</p>
+                        <p>Após tornar-se um bushi (guerreiro samurai), o cidadão e sua família ganhavam o privilégio do sobrenome. Além disso, os samurai tinham o direito (e o dever) de carregar consigo um par de espadas à cintura, denominado "daishō" (símbolo samurai). Era composto por uma espada curta (wakizashi), cuja lâmina tinha 40 cm, e uma grande (katana), com lâmina de 60 cm. Todos dominavam o manejo do arco e flechas e, alguns usavam também bastões, lanças e outras armas como a foice e corrente (kusarigama) e jutte.</p>
+                    </div>
+                    <hr>
+
+                    <div class="grupo">
+                        <span>História</span>
+                    </div>
+                    <div class="apostila">
+                        <p>Inicialmente, os samurais eram apenas coletores de impostos e servidores civis do império. Era preciso homens fortes e qualificados para estabelecer a ordem e muitas vezes ir contra a vontade dos camponeses.</p>
+                        <p>No século VIII, iniciou a formação da casta social dos samurai, mas foi apenas no final do século XII, com o estabelecimento do Período Kamakura houve o período de sete séculos de dominação política e social samurai sobre o povo japonês, que terminou com a Restauração Meiji determinando a queda do terceiro xogunato, na segunda metade do século XIX.</p>
+                        <p>No século X, foi oficializado o termo "samurai", e este ganhou uma série de novas funções, como a militar. Nessa época, qualquer cidadão podia tornar-se um samurai, bastando para isso treinar o Kobudo (arte marcial tradicional japonesa dos samurais), manter uma reputação e ser habilidoso a ponto de ser ser contratado por um senhor feudal. Assim foi até o xogunato dos Tokugawa, iniciado em 1603, quando a classe dos samurai passou a ser uma casta (transmissão hereditária de um estilo de vida). Assim, o título de "samurai" começou a ser passado de pai para filho. Assim, com a transmissão hereditária, começaram a ser treinados militarmente desde a infância, e formavam uma casta respeitadíssima e hereditária.</p>
+                        <p>O samurai mais famoso de todos os tempos foi Miyamoto Musashi (1584—1645), um guerreiro que veio do campo, participou da batalha de Sekigahara e iniciou um longo caminho de aperfeiçoamento. Ele derrotou os Yoshioka em Edo (atual Tóquio) e venceu o combate com outro grande samurai, Sasaki Kojirō.</p>
+                        <p>Pelo fim da era Tokugawa, os samurais eram burocratas aristocráticos, ao serviço dos daimiô (poderoso senhor de terras), com as suas espadas servindo para fins cerimoniais.</p>
+                        <p>Em 1868, com as reformas da era Meiji, quando o imperador do Japão retomou ao poder do país, a classe dos samurai foi abolida e foi estabelecido um exército nacional ao estilo ocidental. O rígido código samurai bushido, ainda sobrevive na atual sociedade japonesa, tal como muitos outros aspectos tradicionais do modo de vida. O legado continua influenciando não apenas a sociedade japonesa, mas também o ocidente.</p>
+                    </div>
+                    <hr>
+                    
+                    <div class="grupo">
+                        <span>O Samurai na sociedade</span>
+                    </div>
+                    <div class="apostila">
+                        <p>A Sociedade Japonesa, durante o período do xogunato, abaixo dos nobres, dos senhores feudais e dos grandes líderes militares, dividia-se em 4 classes principais: samurais, lavradores, artesãos e mercadores. Os samurai, a classe dos guerreiros, que compreendia cerca de 3 a 8 por cento do total da população, destacava-se como casta por poder portar armas legalmente, as quais eram proibidas às outras pessoas; a eles, samurai, quais cabiam a responsabilidade de manter a ordem.</p>
+                        <p>Os samurai tinham privilégios, como o livre direito de ação; diante deles, em certas ocasiões, as pessoas das classes mais baixas deviam lhes reverenciar, como ato de respeito. Por lei, um direito chamado kirisute gomen dava a um samurai o poder de eliminar com sua espada qualquer um das castas mais baixas que não o respeitasse. Os samurais, como casta, terminaram com a extinção do feudalismo.</p>
+                        <p>Sem ter a quem servir, entraram na luta contra o império, numa série de revoltas iniciadas em 1870, que foram abafadas pelo exército imperial. Os sobreviventes das revoltas, homens com séculos de orgulho, honra e cultura guerreira, se degradaram e terminaram seus dias como bandoleiros ou mendigos.</p>
+                    </div>
+                    <hr>
+                    
+                    <div class="grupo">
+                        <span>Onna-bugeisha, a mulher samurai</span>
+                    </div>
+                    <div class="apostila">
+                        <p>Existiam mulheres daimyos também, porém não era algo comum, mulheres generais comandante de tropas e guerreiras eram conhecidas como Onna-Bugeisha. Tomoe Gozen é a guerreira mais conhecida do Japão, temida devido a demostração de força e coragem na Guerras Genpei.</p>
+                        <p>Na classe samurai, a mulher ocupava uma posição importante na família. Quase sempre dispunha do controle total das finanças familiares, comandando os criados e cuidando da educação dos filhos e filhas (sob orientação do marido).</p>
+                        <p>Comandavam também a cozinha e a costura de todos os membros da família. Tinham a importante missão de incutir na mente das crianças (meninos e meninas), os ideais da classe samurai que eram: não ter medo diante da morte; piedade filial; obediência e lealdade absoluta ao senhor; e também os princípios fundamentais do budismo e confucionismo.</p>
+                        <p>Com todas essas responsabilidades, a vida de esposa de um samurai não era nada invejável. Com muita frequência, o samurai estava ausente prestando serviço militar ao seu senhor; e em tempo de guerra o samurai às vezes era forçado a defender seu lar, pois conforme os reveses da batalha poderiam virar alvo de ataques inimigos.</p>
+                        <p>Nessas ocasiões de perigo para a família, não era difícil a mulher combater ao lado do marido, usando de preferência a 'naginata' (alabarda), arma que aprendiam a manejar desde cedo.</p>
+                        <p>Mesmo não tendo o refinamento das damas da nobreza, pela qual os samurais nutriam certo desprezo, a mulher samurai possuía conhecimentos dos clássicos chineses e sabia compor versos na língua de Yamato, ou seja, no japonês puro, usando 'kana'.</p>
+                        <p>Existiam mulheres daimyos e líderes de seus respectivos clãs, as dificuldades em períodos de guerras fizeram muitas mulheres irem às batalhas. Muitas mulheres foram as últimas sobreviventes da sua família ou clã, quando elas eram poupadas da morte pelo inimigo elas eram forçadas a entrarem em convento para se tornarem freiras budistas.</p>
+                        <p>As crônicas de guerra, como o Azuma Kagami, contam-nos que esposas e filhas de samurais lutavam na defesa de seus lares, empunhando alabarda, atirando com arco ou até acompanhando seus maridos nos campos de batalha. Essas mulheres demonstravam muita coragem ao enfrentarem o perigo sem medo.</p>
+                        <p>Sem perder a feminilidade essas esposas, cuidavam de sua aparência vestiam-se com esmero; gostavam de manter a pele clara, usando batom e pintando os dentes de preto (tingir os dentes de preto era hábito de toda mulher casada), tiravam a sobrancelha e cuidavam com muito carinho dos longos cabelos escuros.</p>
+                    </div>
+                    <hr>
+                    
+                    <div class="grupo">
+                        <span>Verdades não ditas:</span>
+                    </div>
+                    <div class="apostila">
+                        <p>Muitos Samurais começavam a treinar muito jovens(15 anos) e treinavam muito espada e com isso acabavam entrando em combate e morriam cedo. Um Samurai com 30 anos de idade era considerado velho.</p>
+                        <p>No Japão feudal, os japoneses não tinham seu idioma escrito e muitos eram analfabetos. Geralmente quem sabia escrever eram as mulheres e escreviam em Chinês. Por isso o Japonês usa os Kanji igual ao Chinês e com base na escrita Chinesa, contruíram a escrita Japonesa.</p>
+                        <p>Muitos Samurais morreram jovens e analfabetos, sem falar nos que cometeram suicídio por diversos fatores.</p>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="accordion_item" id="06">
+                <div class="accordion_header">
+                    <span><a href="#06">Bushi (武士)</a></span> 
+                    <div class="icon">
+                        +
+                    </div>
+                </div>
+                <div class="accordion_content">
+                    <div class="grupo">
+                        <span>Guerreiros</span>
+                    </div>
+                    <div class="apostila">
+                        <p>É uma outra forma de nomear o samurai (侍 - aquele que serve). São os guerreiros do Japão pré - Restauração Meiji.</p>
+                        <p>Da palavra Bushi deriva Bushido (武士道 - caminho do guerreiro), que é o código de honra dos samurais.</p>
+                        <p>Era deles a exclusividade da prática do Bujutsu (武術 - técnica marcial), as artes marciais tradicionais (kenjutsu, iaijutsu, sojutsu, etc.).</p>
+                        <p>Em resumo, eram os guerreiros que por entrarem muito em guerras, desenvolveram várias armas, formas de combate, estratégias entre outros métodos de combate contra guerreiros de outros feudos/impérios</p>
+                        <p>A diferença entre Samurai e Bushi é que, Samurais treinavam muito espada e para combates no 1 a 1 muita das vezes, já os Bushi iam para guerras com tropas, pelotões aos milhares juntos e treinavam várias armas e táticas para guerra. Isso não quer dizer que os Samurai que treinavam só espada ou poucas armas não iam para guerra.</p>
+                    </div>
+                    <hr>
+                    
+                    <div class="grupo">
+                        <span>Bujutsu (武術)</span>
+                    </div>
+                    <div class="apostila">
+                        <p>É o conjunto das Artes marciais japonesas. Faziam parte do treinamento militar dos samurai (ou bushi) para uso na guerra. </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+<!--  -------------------- Separador -------------------- -->
+        <div class="content">
+                <div class="accordion_item" id="07">
+                    <div class="accordion_header">
+                        <span><a href="#07">As 9 Escolas da Bujinkan</a></span>
+                        <div class="icon">
+                            +
+                        </div>
+                    </div>
+
+                        <div class="accordion_content">
+                            <div class="apostila">
+                                <p>A Bujinkan é composta por nove tradições marciais. A possibilidade do estudo das nove tradições faz com que sejam formados guerreiros mais completos, com grandes habilidades marciais fazendo uso de armas ou desarmados.</p>
+                                <p>Dentro da Bujinkan, são nove as escolas que a compõem. A explicação que Hatsumi Sensei dá é a seguinte: “Cada uma das escolas que praticamos se especializam em distintas áreas de combate. Praticamos nove, porque uma seria limitada, e veríamos as coisas de um só lado, o qual nos converteria em guerreiros incompletos”.</p>
+                                <p>A ordem em que estão postas as escolas, é a ordem de Antiguidade de cada uma. O estilo Togakure é o mais antigo e do qual se acrescentou e uniu com o tempo à prática de outras escolas, incluindo escolas samurais, como o estilo Kukishinden Ryu.</p>
+                                <p>Hoje em dia é muito difícil ver alguma prática de alguns dos estilos de ninpoh nos dojos do Japão. São reservados e escondidos, e raramente alguém consegue tomar contato com eles. As práticas de dojo se limitam ao taijutsu que inclui jutai, dakentai e koppo. Antigamente se praticava nos dojos os estilos de ninpoh com muito mais frequência e por isto se tornou a base de muitas técnicas da Bujinkan.</p>
+                                <p>O ninpoh ou ninjutsu, “técnica de resistência”, abrange áreas muito variadas entre as quais está a estratégia de guerra, supervivência, a psicologia, e todas aquelas ramificações que contém a arte da guerra. O combate noturno, a meditação, a mimetização, o uso dos elementos são só partes do ninpoh, partes que ainda não se deixam ver bem, mas que são por sua vez as partes mais ricas e essenciais do ninjutsu.</p>
+                                <p>A Bujinkan Dojo foi criada pelo Mestre Masaaki Hatsumi, com a finalidade de disseminar os ensinamentos de nove Ryuha, antigas escolas de artes marciais do Japão Feudal.</p>
+                                <p>Soke Masaaki Hatsumi herdou essas escolas de seu Mestre Toshitsugu Takamatsu Sensei e criou o sistema Budo Tai Jutsu, que tem como proposta manter unidas as nove escolas em um mesmo caminho, proporcionando aos alunos do mundo inteiro a oportunidade de conhecer e estudar as antigas tradições marciais.</p>
+                            </div>
+                        </div>
+                </div>
+
+                <div class="accordion_item" id="08">
+                    <div class="accordion_header">
+                        <span><a href="#08">1 - TOGAKURE RYÛ NINPÔ HAPPÔ HIKEN (NINJUTSU)</a></span>
+                        <div class="icon">
+                            +
+                        </div>
+                    </div>
+                    <div class="accordion_content">
+                        <div class="grupo">
+                            <span>(Escola da Porta Oculta)</span>
+                        </div>
+                        <div class="apostila">
+                            <p>戸隠流忍法 - TOGAKURE RYÛ NINPÔ HAPPÔ HIKEN - Fundada por Daisuke Nishima em meados de 1100, é a segunda mais antiga escola do sistema Bujinkan. Togakure Ryu possui um amplo arsenal técnico e todos os aspectos de combate são estudados a fundo. Essa escola também possui métodos secretos e armas ocultas.</p>
+                            <p>Alguns dos ensinamentos mais importantes de Togakure Ryu são:</p>
+                            <p>“A violência deve ser evitada, Ninpo é Bujutsu”</p>
+                            <p>“Empregar a espada somente para a paz e para a defeza do seu país, da família e da natureza”</p>
+                            <p>Este é o Ryu Ha com maior numero de Soke das nove escolas da Bujinkan. É um dos sistemas mais completos de luta que cobre todos os aspectos do combate, possui métodos secretos e armas ocultas.</p>
+                        </div>
+                        <hr>
+
+                        <div class="grupo">
+                            <span>REKISHI 歴史 (História)</span>
+                        </div>
+                        <div class="apostila">
+                            <p>A origem de Togakure Ryû, de acordo com o Denshô (registros escrito),  tem o mesmo percurso da tradição de Gyokko Ryû até a Era de Ôhô (1161-1162), quando Daisuke Nishina nasceu em Shishû, sudeste de Togakure (atual Togakushi Mura). Filho de Nishina Yukihiro, um Samurai de alta posição a serviço do senhor Minamoto Yoshinaka, se vê envolvido em um ambiente marcial que vivia seu pai e sua família. A aldeia de Togakure fica próximo de um templo budista Enryakuji no Monte Hieizan conhecido por ser o berço do Ramo de Budismo esotérico Tendai.</p>
+                            <p>Daisuke participou de uma dura batalha no ano de 1180 (Guerra de Genpei – Minamoto versus Taira), durante a qual foi ferido e testemunhou a morte do Shôgun Yoshinaka. Viu-se forçado a fugir para sua terra natal, o vilarejo de Togakure. Ali conheceu Kain Dôshi (ou Kagakure/Kasumigakure Doshi), que era um Ninja de Hakûn Ryû (A Hakûn Ryû Ninjutsu foi fundada por Garyû Doji e, posteriormente, completada por Hakûn Dôshi), no qual foi o mestre de Kagakure Doshi, tendo dado seu nome para o Ryû). Daisuke recebeu o treinamento de Kagakure juntamente com os ensinamentos de Shugendô. Assim, foi formado a base da tradição Togakure Ryû. Depois, Nishima mudou o seu nome para Togakure Daisuke.</p>
+                            <p>Anos antes, durante a Era de Hôgen (1156-1159), Shima Kosanta Minamoto No Kanesada aos 16 anos de idade, alistou-se nas tropas de Minamoto Yoshinaka, que juntaram-se ao exército de um poderoso clã da província de Ise, eles lutaram com três mil cavaleiros do exército de Fujiwara Hidehira na batalha conhecida como Hôgen No Ran. Shima ficou gravemente ferido e foi salvo por Kagakure Dôshi, e fugiram para as montanhas de Iga. É dito que ele recebeu o treinamento de Kagakure em artes marciais, como também Ninpô. Em anos posteriores, ele foi intitulado como o 2º Sôke do Togakure Ryû.</p>
+                            <p>O 3º Sôke Togakure Goro é reconhecido como sendo a pessoa que oficialmente formou o clã Togakure em um sistema organizado de ninjutsu ainda ensinado hoje. Posteriormente, a tradição chegou ao ramo principal do Togakure Ryû, a família Toda, que levou a liderança até o último integrante da família que carrega o nome Toda, Toda Shinryûken Masamitsu.</p>
+                            <p>O 32º Sôke, Toda Shinryuken Masamitsu era o instrutor principal do Kobusho (escola de instrução do Exército). Foi escolhido por Matsuhira Norimasa, membro do conselho de anciões do Shôgun. O Kobusho foi estabelecido em fevereiro de 1855. Toda partiu do Kobusho  para região de Kinki/Kansai e nunca mais teve posições oficiais.</p>
+                            <p>Toda Shinryuken era avô materno de um jovem, que mais tarde foi um respeitado mestre e considerado o último Ninja do Japão, Toshitsugu Takamatsu. Ele recebeu a tradição de Togakure e outras de seu avô. Nos últimos quinze anos de sua vida, transmitiu a tradição ao atual Sôke (sucessor) Hatsumi Masaaki.</p>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="accordion_item" id="09">
+                    <div class="accordion_header">
+                        <span><a href="#09">2 - KUMOGAKURE RYÛ NINPÔ (NINJUTSU)</a></span>
+                        <div class="icon">
+                            +
+                        </div>
+                    </div>
+                    <div class="accordion_content">
+                        <div class="grupo">
+                            <span>(Escola Oculta nas Nuvens)</span>
+                        </div>
+                        <div class="apostila">
+                            <p>雲隠流忍法 - KUMOGAKURE RYÛ NINPÔ - Fundada em meados de 1500 por Iga Heinaizaemon Ienaga, é famosa pelo uso da Kamayari (lança com foice) e técnicas com saltos. Essa escola possui características muito parecidas com as de Togakure Ryu Ninjutsu.</p>
+                        </div>
+                        <hr>
+
+                        <div class="grupo">
+                            <span>REKISHI 歴史 (História)</span>
+                        </div>
+                        <div class="apostila">
+                            <p>Kumogakure Ryu Ninjutsu foi fundada em meados dos anos 1500 por Iga Heinaizaemon No Jo Ienaga que foi dito ter mudado seu nome para Kumogakure Hoshi. Pode ter se originado como uma escola de pensamento baseada na não violência. Diz-se que a frase “Shikin Haramitsu Daikomyo“ vem deste ryu e reflete tanto as atitudes budistas quanto xintoístas.</p>
+                            <p>O taijutsu de Kumogakure Ryu é muito semelhante ao de Togakure Ryu. Kumogakure Ryu pode ter sido criado pela família Toda (também de Togakakure Ryu) em 1600, como uma escola de ninjutsu de pensamento centrando-o nas técnicas do lado não violento do Ninpo. (O Togakure Ryu ensina que a violência deve ser evitada). O ninja de Kumogakure Ryu entrava em combate usando mangas blindadas (tekko de ferro) para se protegerem. Outra característica interessante do ryu foi a máscara demônio, por vezes usada por membros do sistema. Kikaku-ken (cabeça chifre do demônio) dá origem a uma outra teoria da máscara demônio. Uma das armas especiais do estilo é o kamayari, ou lança gancho. Usado em combate contra espadachins, os ganchos foram usadas para desviar e prender as lâminas. Foi também utilizado para prender oponentes a partir de cima. O densho de Kumogakure Ryu menciona um ninja chamado Sarutobi Sasuke, que usou o kamayari quando saltando de árvore em árvore, prendendo-o nos galhos.</p>
+                            <p>Outra especialidade de Kumogakure Ryu envolve treinamento de sobrevivência, e ser capaz de acender fogueiras em todas as condições.</p>
+                            <p>Iga Heinaizaemon teve um filho, Kami Hattori Heitaro Koreyuki, que era o antepassado de Hattori Hanzo, o famoso ninja.</p>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="accordion_item" id="10">
+                    <div class="accordion_header">
+                        <span><a href="#10">3 - GYOKUSHIN RYÛ NINPÔ (NINJUTSU)</a></span>
+                        <div class="icon">
+                            +
+                        </div>
+                    </div>
+                    <div class="accordion_content">
+                        <div class="grupo">
+                            <span>(Escola da Jóia do Coração)</span>
+                        </div>
+                        <div class="apostila">
+                            <p>玉心流忍法 - GYOKUSHIN RYÛ NINPÔ - Fundada em meados de 1500 por Sasaki Goeman Teruyoshi. Este ryuha é muito pouco conhecido, mas suas características principais são a utilização de Kihaku (explosão de energia) em suas técnicas, além de Koppo Jutsu e técnicas com kusarifundo (corrente com pesos). Esta escola está mais ligada a aspectos táticos e estratégicos de espionagem e guerra.</p>
+                        </div>
+                        <hr>
+
+                        <div class="grupo">
+                            <span>REKISHI 歴史 (História)</span>
+                        </div>
+                        <div class="apostila">
+                            <p>Seu fundador foi Sasaki Goemon Teruyoshi (ou Sasaki Orouemon Akiyari), sabe-se que também foi estudante da Gyokko Ryu, é possível que as técnicas de Kosshi jutsu da Gyokushin Ryu sejam baseadas na Gyokko Ryu. O filho de Sasaki Goemon, Sasaki Gendayu, foi contratado pelo Daimyo de Kishu, e foi pago 200 Koku por ano (um Koku foi o suficiente para alimentar um homem durante um ano), este foi posteriormente aumentado para 400 Koku por ano. É possível que ele, como seu pai eram altamente qualificados na Gyokko Ryu.</p>
+                            <p>A Gyokushin Ryu foi ensinada secretamente nos feudos de Kishu e Takeda, isso ocorreu por volta do ano de 1600, e foi então que entrou em contato com a Togakure Ryu e com a família Toda. As circunstâncias na qual passou a sucessão a família Toda não se sabe ao certo, porém foi apartir de Toda Nobutsuna que algumas informações sobre esta escola passaram a ser conhecidas.</p>
+                            <p>Sua caracteristica principal está nas estratégias e métodos de espionagem do que no combate corpo a corpo, contudo, seu ninpo taijutsu se destaca pelas projeções em sutemi(sacrifício), em buscar o kuzushi (desequilíbrio) do atacante e abrir completamente a parte superior levantando os braços de uke, então realiza um ataque explosivo e devastador com o kihaku (poder interior) golpeando repetidamente o torax, também se considera parte do estilo de koppo jutsu. Suas especialidades em armas são kusari fundo, kenjutsu, iaijutsu, sendo mais conhecida pelo nível superior de nagenawa (laço de corda).</p>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="accordion_item" id="11">
+                    <div class="accordion_header">
+                        <span><a href="#11">4 - TAKAGI YOSHIN RYÛ JU TAIJUTSU (SAMURAI)</a></span>
+                        <div class="icon">
+                            +
+                        </div>
+                    </div>
+                    <div class="accordion_content">
+                        <div class="grupo">
+                            <span>(A Escola da Alta Árvore e do Coração Enraizado)</span>
+                        </div>
+                        <div class="apostila">
+                            <p>高木揚心流柔體術 - TAKAGI YOSHIN RYÛ JU TAIJUTSU - Fundada no início de 1600 por Takagi Oriuemon Shigenobu. Mais conhecida na Bujinkan como uma “escola de guarda-costas”, possui técnicas rápidas e eficientes de Jutai Jutsu, além de métodos de desarme de espada.</p>
+                        </div>
+                        <hr>
+
+                        <div class="grupo">
+                            <span>REKISHI 歴史 (História)</span>
+                        </div>
+                        <div class="apostila">
+                            <p>A história do 高木揚心流 Takagi Yoshin Ryû começa no período do 13º ano da Era 永禄 Eiroku (1570), quando o monge Budista da 安倍氏, família Abe, chamado 雲龍 Unryû (dragão da Nuvem), desenvolveu métodos para 体術 Taijutsu, 棒術  Bôjutsu e 手裏剣術 Shurikenjutsu, o fundou.</p>
+                            <p>No 2º ano da Era 正保 Shôhô (1645), 高木折右衛門重信 Takagi Oriuemon Shigenobu adicionou métodos de aderência do 相撲 Sumô para completar um sistema de 柔体術 Jûtaijutsu, que deu origem a doze formas de Taijutsu 表 Omote, vinte e quatro formas 裏 Ura e doze formas de 捌き Sabaki. Nessa época era chamado 高木流 Takagi Ryû. No 11º ano da Era 寛文 Kanbun (1671), 高木馬之輔 Takagi Umanosuke propagou amplamente a arte como 高木揚心流柔体術 Takagi Ryû Jutaijutsu, 棒術 Bôjutsu, 長刀術 Naginatajutsu e 鉄盤刀術 Teppan Tôjutsu.</p>
+                            <p>Durante a era 天保 Tenpô, no final do shogunato Tokugawa (por volta do ano de 1841), 八木幾五郎久喜 Yagi Ikugorô Hisayoshi (13º Sôke de Takagi Yôshin Ryû) um Samurai aposentado do Castelo de 赤穂 Akô (na 兵庫県 Prefeitura de Hyôgo), abriu um Dôjô de Takagi Yôshin Ryû em 明石 Akashi. Ele deu 免許皆伝 Menkyô Kaiden a três dos melhores alunos dele, que abriram novos ramos e resultaram em 藤田 Seitôha Fujita Takagi Yôshin Ryû, Ishibashi Takagi Ryû e Ishitani Takagi Yôshin Ryû.</p>
+                            <p>A próxima geração de Fujita foi 水田芳太郎忠房 Mizuta Yoshitaro Tadafusa. Ishibashi não teve seguidores e Ishitani entregou a próxima geração a seu filho 石谷松太郎隆景 Ishitani Matsutaro Takakage. Matsutaro foi ensinado e recebeu 免許皆伝 Menkyô Kaiden também de 九鬼神流 Kukishin Ryû e 神伝鞴韜流 Shinden Tatara Ryû de 秋山與太郎 Akiyama Yotaro.</p>
+                            <p>De 1903 a 1911 (últimos anos da Era 明治 Meiji), 高松寿嗣翊 Takamatsu Toshitsugu Sensei foi ensinado e adquiriu a próxima geração de ambos Sensei Ishitani Matsutaro e Mizuta Yoshitaro.</p>
+                            <p>No 34º ano da Era Shôwa 昭和 (1959), 初見 Hatsumi Sensei recebeu de Takamatsu Sensei o Mizuta Den Takagi Yoshin Ryû. Essa tradição teve grande influencia de duas conhecidas escolas, 竹之内流柔術 Takenouchi Ryû Jujutsu e 九鬼神流 Kukishin Ryû.</p>
+                            <p>Hatsumi Sensei também recebeu Menkyô Kaiden em Hontai Takagi Yôshin Ryû Ishitani Den de Ueno Takashi.</p>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="accordion_item" id="12">
+                    <div class="accordion_header">
+                        <span><a href="#12">5 - SHINDEN FUDÔ RYÛ DAKEN TAIJUTSU (SAMURAI)</a></span>
+                        <div class="icon">
+                            +
+                        </div>
+                    </div>
+                    <div class="accordion_content">
+                        <div class="grupo">
+                            <span>(Escola do Coração Imutável)</span>
+                        </div>
+                        <div class="apostila">
+                            <p>神伝不動流打拳体術 - SHINDEN FUDÔ RYÛ DAKEN TAIJUTSU</p>
+                            <p>O 11º Sôke de Kishin Chôsui Ryû 占部宿禰兼貞 Urabe Sukune Kanesada também estudou uma forma de 拳法 Chuan Fa/Kenpo chinês de um guerreiro chinês que fugiu durante a dinastia de Tang na China e escapou para o Japão. Urabe ensinou este Kenpô a Sonjinshi Yoshihide que em troca acrescentou isto ao Chôsui Ryû e foi conhecido como Dakentaijutsu. Em 1349 na Era de 正平 Shôhei, com o nome mudado para 出雲冠者義秀/出雲冠者義照 Izumo Kanja Yoshihide/Yoshiteru, (nome adquirido de sua cidade natal Izumo), é citado como introdutor da tradição de Shinden Fudô Ryû.</p>
+                            <p>O 2º Sôke, 源八幡七郎為成 Minamoto Hachiman Shichirō Tamenari, é citado como sendo o fundador oficial. A algum ponto de sua vida ele fugiu a Iga, possivelmente pelo fato de estar no lado perdedor de uma batalha.</p>
+                            <p>戸 田真竜軒正光 Toda Shinryûken Masamitsu, o 24º Sôke, foi um Samurai e mestre de Bikenshin Ryû. Ele também foi um instrutor de espada para o shogunato Tokugawa . Ele era o avô de Takamatsu Sensei, e operou um dojo que teve uma placa sobre a porta que leu: “Shinden Fudo Ryu Dakentaijutsu”. Este foi a primeira tradição que Takamatsu Sensei aprendeu de Toda Sensei.</p>
+                            <p>O 9º Sôke 金子仁助由清 Kaneko Jinsuke Yoshikiyo, e os 10° Soke^田島源九郎成吉 Tajima Genkuro Nariyoshi viveram durante os períodos de 正平 Shôhei (1346-1370), e 元中 Genchû (1384). Estes dois períodos foram determinados nomes da Corte sulista, quando o Japão foi dividido em dois membros da família real. Cada um se classificou como Imperador do Japão, e como resultado, aconteceram grandes batalhas entre as Cortes do Norte e Sul. Com o resultado destes fatos, muitos dos guerreiros ganharam fama e muitas escolas surgiram baseado nas habilidades que eles tinham adquirido no campo de batalha.</p>
+                            <p>O 16º Sôke 阿部無我 Abe Muga viveu durante a era de 鎌倉 Kamakura (1185–1333), e veio da família 六條 Rokujô que era um ramo do clã de 源氏 Minamoto (Genji). Sua mãe, Otowa Hime era do 安倍氏 clã Abe, que eram proprietária dos Makimono de Amatsu Tatara conhecidos como Amatsu Tatara Rinpô Hiden.</p>
+                            <p>Toda Shinryûken era avô materno do jovem 高松 寿嗣 Toshitsugu Takamatsu. Ele começou a ensinar Takamatsu com a idade de apenas 9 anos. Com 13 anos, após 4 anos de treinamento, Takamatsu recebeu sua 1º tradição de seu avô, tornando 25º Sôke de Shinden Fudô Ryû.</p>
+                            <p>Nos últimos quinze anos de sua vida, Takamatsu Sensei transmitiu a tradição ao atual 宗家 Sôke (sucessor) 初見良昭 Hatsumi Masaaki.</p>
+                            <p>O Shinden fudo Ryû tem dois estilos de Taijutsu. Estes são chamados Dakentaijutsu e Jutaijutsu. No Dakentaijutsu existem kamae formal e a utilização de postura natural é enfatizado, enquanto no Jutaijutsu existem 5 kamae.</p>
+                            <p>Shinden Fudo Ryu inclui: JutaiJutsu, Dakentaijutsu, Iainuki, Sojutsu, Bojutsu, Naginata jutsu, Hojo jutsu (o uso de cordas para aprisionar), Ono (grande Machado), Otsuchi (martelo grande).</p>
+                            <p>Não deve-se utilizar a força, e sim um taijutsu natural, descartando qualquer movimento forçado. Deve-se procurar sempre o kukan (espaço) para criar o kuzushi (desequilíbrio).</p>
+                            <p>Ao sofrer uma tentativa de projeção ou uma projeção efetiva deve-se evitar cair ao chão de qualquer jeito, especialmente ao ir armados com daisho (espada comprida e curta), procurando sempre cair de pé. Tanto no Kumi uchi como no resto das técnicas deve-se manter sempre uma mão livre, para controlar e usar as armas próprias e do nosso inimigo.</p>
+                            <p>O trabalho com a katana também é diferente e natural, podendo segurá-la de qualquer maneira, mesmo com a mão esquerda por diante da direita. A katana de Shinden Fudo Ryu é mais comprida do que as katanas tradicionais, tanto a lâmina (> 110 cm.) como a tsuka (> 30 cm.). A tsuka é utilizada para torção, estrangular, etc. É muito utilizado o conceito de Iainuki (desembainhe y corte rápido) e também o trabalho com a katana sem desembainhar totalmente. Nas projeções tenta-se mais do que lançar ao inimigo, afundá-lo aos nossos pés.</p>
+                            <p>O típico chute desta escola é o Take Ori Geri, chamado assim devido ao seu treinamento, que consiste em chutar os talos de bambu enquanto se caminha. É muito importante treinar na natureza e utilizar os elementos naturais para fortalecer o corpo.</p>
+                        </div>
+                        <hr>
+
+                        <div class="grupo">
+                            <span>Regras da Shinden Fudo Ryu que constam no densho, a seguir:</span>
+                        </div>
+                        <div class="apostila">
+                            <p>1 - Conheça a sabedoria de ser paciente durante os períodos de inatividade.</p>
+                            <p>2 - Escolha o caminho da justiça para o curso de sua vida.</p>
+                            <p>3 - Não permita que seu coração seja controlado pelas exigências da ganância, desejos, ou dependência.</p>
+                            <p>4 - A tristeza, a dor, e o ressentimento são emoções naturais a ser encontrados na vida. Portanto, trabalhar persistentemente para cultivar um coração imutável.</p>
+                            <p>5 - Mantenha em seu coração a importância do respeito e lealdade para seus pais e superiores, e volte-se para os caminhos da pena (artes literárias) e da espada (artes marciais) com determinação equilibrada.</p>
+                            <p>Observar as 5 regras acima é a lei do Dojo. Escrito no Ano Novo, Meiji 23 (1891) por Toda Shinryuken Masamitsu.</p>
+                            <p>O princípio secreto de Shinden Fudo Ryu é o “Princípio da Natureza”.</p>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="accordion_item" id="13">
+                    <div class="accordion_header">
+                        <span><a href="#13">6 - KUKISHINDEN RYÛ TAIJUTSU HAPPÔ HIKEN (SAMURAI)</a></span>
+                        <div class="icon">
+                            +
+                        </div>
+                    </div>
+                    <div class="accordion_content">
+                        <div class="grupo">
+                            <span>(A escola dos nove deuses demônios)</span>
+                        </div>
+                        <div class="apostila">
+                            <p>九鬼神伝八法秘剣 - KUKISHINDEN RYÛ TAIJUTSU HAPPÔ HIKEN - Fundada em meados de 1300 por Izumo Kanja Yoshitero. É famosa por possuir técnicas diferentes com várias armas, além de ter também em seu currículo técnicas de Amatsu Tatara (terapia japonesa). O uso de armaduras também faz parte dessa tradição.</p>
+                        </div>
+                        <hr>
+
+                        <div class="grupo">
+                            <span>REKISHI 歴史 (História)</span>
+                        </div>
+                        <div class="apostila">
+                            <p>A tradição de 九鬼神伝流 Kukishinden Ryû é oriunda do 九鬼神流 Kukishin Ryû, um 綜合武術 Sôgô Bujutsu (arte militar integral). Por tanto, a história do Kukishinden Ryû é a mesma até a Era 乾元 Kengen (1302)</p> 
+                            <p>Originou-se diretamente do 澄水流打拳體術 Chôsui Ryû Dakentaijutsu (馗神澄水流打拳體術 Kijin Chôsui Ryû Dakentaijutsu). O Chôsui Ryû foi formulado primeiramente por 大伴古麿  Otomo Furumaro/Komaro, que estudou com 鑒真 Jianzhen ou Kanjin (monge  budista, que chegou ao Japão da China por volta de 749 – 757). 名和新三郎基長 Nawa Shinzaburo Motonaga reavivou os ensinamentos antigos deste Ryû, que estava quase perdido e, como tal, se tornou o primeiro Sôke do 澄水流 Chôsui Ryû. O 3º Sôke do Chôsui Ryû, 大国鬼三太清澄  Ôkuni Onimita Kiyosumi (um filho de 大国鬼源太 Ôkuni Onifujita ou Ôkuni Onigenta guarda de 後醍醐 Go Daigo), renomeou para 馗 Kishin (Kijin) Chosui Ryû.</p>
+                            <p>Kiyosumi trabalhou com Nawa Hoki No Kami Kenchô, Shuri No Suke Kiyoshi e Kojiro Nagato No Kami. Estes homens eram os vassalos do clã de 菊池 Kikuchi. Ôkuni Kiyosumi deu o título a 越前守 Echizen No Kami. 11º Sôke de Kishin Chôsui Ryû 占部宿禰兼貞 Urabe Sukune Kanesada, também estudou uma forma de 拳法 Kenpo chinês de um guerreiro, que escapou para o Japão da dinastia Tang na China. Urabe ensinou este Kenpô a Sonjinshi Yoshihide que em troca acrescentou isto ao Chôsui Ryû e foi conhecido como Dakentaijutsu. Em 1349, Era de 正平 Shôhei, com o nome mudado para 出雲冠者義秀/出雲冠者義照 Izumo Kanja Yoshihide/Yoshiteru, (nome adquirido de sua cidade natal Izumo), é citado como fundador de ambas tradições Kukishinden Ryû e Shinden Fudô Ryû.</p>
+                            <p>O nome 九鬼 Kuki foi concedido pelo imperador 後醍醐天皇 Go-Daigo Tennô a 隆眞薬師丸 Kurando Yakushimaru, por havê-lo resgatado do seqüestro de 足利 尊氏 Ashikaga Takauji na época de 鎌倉 Kamakura da Era 延元 Engen (1336). O Imperador considerou que Kurando lutou como “Deuses Demônios” durante o resgate e foi denominado como Kuki. Logo, Kurando fundou a escola com o nome de Kukishin Ryû.</p>
+                            <p>O 11º Sôke 大国小源太幸久 Ôkuni Kogenta Yukihisa do Kukishinden Ryû é relatado como sendo o introdutor de Kukishinden Ryû 杖術 Jôjutsu, que foi desenvolvido usando suas habilidades em Kukishin Ryû Bojutsu, Hanbojutsu e Kenpô.</p>
+                            <p>Acredita-se que do 六尺棒術 Rokushakubojutsu foram criados o Jô, Hanbô e também Sôjutsu e Naginatajutsu. Do Hanbô, foram criados Kenjutsu e Juttejutsu. Tradicionalmente, o Jô não é uma arma ofensiva. Os kata são uma combinação de Bô e Kenjutsu.</p>
+                            <p>No século XVII, o 13º Sôke do Kukishinden Ryû, 大国鬼平重信 Ôkuni Kihei/Onihei Shigenobu de Izumo (proprietário do Menkyo Kaiden de Kukishin Ryû e também Sôke de Chôsui Ryû Dakentaijutsu), ensinou o sistema de Kukishin ao 3º Sokê de Takagi Yôshin Ryû, 高木源之進英重 Takagi Gennoshin Hideshige (que, depois de um confronto amigável, se tornaram amigos). Em troca, Takagi Gennoshin ensinou técnicas de Bôjutsu, Naginatajutsu e Shurikenjutsu. Ôkuni se tornou o 4º Sôke do Takagi Yôshin Ryû depois da morte do seu amigo Takagi Gennoshin. Por um curto período, estas duas escolas foram ensinadas juntas por Ôkuni, mas antes de  sua morte, Ôkuni dividiu as escolas. O Kukishin Ryû, ele classificou de Hon Tai Kukishin Ryû Bôjutsu e, depois se tornou Kukishinden Ryû Taijutsu (com Chôsui Ryû Dakentaijutsu) e, o Takagi Yôshin Ryû e Chôsui Ryû seguiram em outra direção (o Takagi Yôshin Ryû também teve o Bôjutsu de Kukishin Ryû).</p>
+                            <p>Acredita-se que 大国出雲守重広 Ôkuni Izumo Mori Shigehiro, o 19º Sôke, viveu em meados de 1800 e foi por um período guarda-costas pessoal para alguns dos Imperadores da época. Ele também foi conhecido pelo nome de Chôtei No Kinki Eishi. Durante a era de 安政 Ansei (1850), foi guardião dos recintos sagrados do palácio imperial. Ele foi genro de 戸田英三郎信正 Toda Eisaburo Nobumasa (se casando com sua filha) 27º Sôke de Togakure Ryû.</p>
+                            <p>石 谷武甥 Ishitani Takeoi, o pai do famoso 石谷松太郎 Ishitani Matsutaro, o professor de Takamatsu, veio da província de 兵庫 Hyôgo. Ele era um estudante da mesma categoria que 藤田久吉 Fujita Hisayoshi, que estudou de 八木幾五郎 Yagi Ikugoro, o 13º Sôke de Takagi Yôshin Ryû. Com isso, o Kukishinden e o Takagi Yôshin Ryû mantiveram juntos. Ishitani e Fujita receberam o Menkyô Kaiden de Takagi Yoshin Ryû (também havia outra pessoa chamada Ishibashi que recebeu Menkyô Kaiden). Fujita chamou a tradição de Takagi Yoshin Ryû e Ishitani chamou de 本體高木揚心流 Hontai Takagi Yoshin Ryû, que é o nome original do Takagi Yôshin Ryû. Depois de 200 anos, o Kukishinden Ryû (Hon Tai Kukishin Ryû), e o Takagi Yôshin Ryu tiveram seu caminhos juntos novamente.</p>
+                            <p>Ishitani Matsutaro estudou com seu pai o Kukishinden Ryû e Hon Tai Takagi Yôshin Ryû. Ele também estudou com 大国重治英政  Ôkuni Shigeharu Hidemasa (36º Sôke do 本體道神澄水流九鬼神伝打拳體術 Hontai Kishin Chôsui Ryû Kukishinden Dakentaijutsu), 伊庭登代太郎 Iba Toyotaro (14º Sôke do 九鬼神伝天真兵法 Kukishinden Tenshin Hyôhô) e 15º Sôke de 天真宗傳九鬼神流 Tenshin Sôden Kukamishin Ryû.</p>
+                            <p>Ishitani Matsutaro trabalhou como segurança em uma fábrica de fósforo na cidade de 神戸 Kôbe, que pertenceu ao pai de Takamatsu. Foi então, que ele conheceu Takamatsu que já estava estudando o Kotô Ryû, Gyokko Ryû, Shinden Fudô Ryû e outras tradições do seu avô.</p>
+                            <p>Takamatsu pediu então a Ishitani que lhe ensinasse o Kukishinden Ryû e outras artes que ele soubesse. Ishitani o aceitou como um estudante e, com o uso de um canto da fábrica e alguns Tatami Ishitani ensinou primeiro para Takamatsu o Hikenjutsu do Kukishinden Ryû.</p>
+                            <p>Nos últimos quinze anos de sua vida, transmitiu a tradição ao atual 宗家 Sôke (sucessor) 初見良昭 Hatsumi Masaaki</p>
+                            <p>De certa forma, apartir da Kukishin Ryu novos ramos foram surgindo, um destes ramos chamado de Kukishinden Ryu tem como fundador Izumo Kanja Yoshiteru. As artes marciais desta escola foram desenvolvidas em Kumano região de forte influência Shinto, este fato foi assinado e registrado na escola. Devido a Kumano estar em uma região costeira, houve neste local muitas batalhas navais, onde os membros desta escola desenvolveram técnicas especiais de luta de espadas com o centro de gravidade mais baixo adaptado ao confronto dentro das plataformas dos barcos.</p>
+                            <p>Kukishinden Ryu contém extenso patrimônio cultura através de suas ligações com outras escolas como Itto Ryu, Chosui Ryu, a ligação mais forte no entanto foi criada com a Takagi Yoshin Ryu devido a amizade entre os dois lideres dessas escolas. Takagi Yoshin Ryu também faz parte da Bujinkan. A primeira conexão destas escolas ocorreu no século 17.</p>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="accordion_item" id="14">
+                    <div class="accordion_header">
+                        <span><a href="#14">7 - GYOKKO RYÛ KOSSHI JUTSU (BUJUTSU)</a></span>
+                        <div class="icon">
+                            +
+                        </div>
+                    </div>
+                    <div class="accordion_content">
+                        <div class="grupo">
+                            <span>(Escola da Jóia do Tigre)</span>
+                        </div>
+                        <div class="apostila">
+                            <p>玉虎流骨指術 - GYOKKO RYÛ KOSSHI JUTSU - Fundada em meados de 1100 por Tozawa Hakuunsai. É a mais antiga escola da Bujinkan. É conhecida pelo Kihon Happo e San Shin no Kata. Koshijutsu significa “derrubar o adversário com um dedo”; portanto, sua característica é derrotar o adversário através de ataques a músculos e pontos vitais do corpo.</p>
+                        </div>
+                        <hr>
+
+                        <div class="grupo">
+                            <span>REKISHI 歴史 (História)</span>
+                        </div>
+                        <div class="apostila">
+                            <p>A transmissão falada da Gyokko Ryu revela, que o princípio desta escola foi desenvolvido por uma princesa chinesa. Durante a dinastia Tang, registros históricos indicam que havia uma mulher registrada como 李鳳貞 Ri Hôtei na corte de 長安 Chan’an (capital da Dinastia de Tang – 唐朝 Tôchô em Japonês) que era conhecida por sua proficiência em kosshi Jutsu, hicho jutsu e shuriken jutsu. É possível também que a Gyokko Ryu venha de um oficial militar da guarda do palácio Chinês.</p>
+                            <p>Na época da dinastia Tang (618 – 906) na China, muitos chineses foram obrigados a fugir para o Japão. Entre eles estavam 張武勝 Zhang Wu Sheng (pronuncia chinesa) ou Cho Bushô (em japonês), 姚玉虎 Yao Yu Hu (em chinês) ou Yo Gyokko (em japonês) e 異勻 Yi Go (em chinês) ou Ikai (em japonês), todos seriam militares da guerra. Ikai teria sido um general chinês, todos eles são os introdutores do sistema kosshi Jutsu no Japão, que mais tarde veio ser chamado Gyokko Ryu.</p>
+                            <p>Ikai ensinou a Gamon Doshi, este por sua vez ensinou a Garyu Doshi e este ensinou a Hachiryu Nyudo que mais tarde veio a ser mestre de Tozawa Hakuunsai, sendo este reconhecido como o fundador original da Gyokko Ryu. Este sistema foi transmitido como uma escola de kosshi Jutsu até ser reorganizada por Sakagami Taro Kunishige em uma Ryu Ha. Ele também foi responsável pela reorganização da escola Koto Ryu em uma Ryu Ha. Ele foi Soke do ano de 1532 até 1555 e denominou a escola de Gyokko Ryu Shito Jutsu. Sakagami Taro Kunishige transmitiu a escola para Sougyoko Kan Ritsushi, que renomeou a escola para Gyokko Ryu Kosshi Jutsu.</p>
+                            <p>A escola Gyokko Ryu por ser uma das Ryu Ha mais antiga do Japão, serviu de base para o surgimento de muitas outras escolas. Durante o século XVI, a Gyokko Ryu deu origem ao surgimento de outras escolas como: Gyokushin Ryu, Hon Tai Gyokushin Ryu, Izumo Ryu e Gikan Ryu, fundadas por guerreiros dicípulos do mestre Sougyoko Kan Ritsushi Soke em 1532. Entre este período, são transmitidas as tradições das escolas coirmãs Koto Ryu e Gyokko Ryu ao Clã Momochi. Durante esse tempo as escolas Koto Ryu e Gyokko Ryu passam a ter influências do Ninpo devido ao Clã Momochi pertencer a tradição ninja e também era Soke da escola Iga Ryu.</p>
+                            <p>Como está no Bugei Ryu Ha Daijiten (Grande Enciclopédia das Artes da Guerra do Japão) consta a Gyokko Ryu como sendo Kosshi Jutsu, Shito Jutsu e Ninpo.     Por ter sido desenvolvida na região de Iga (atual Mie), como relatado acima, a Gyokko Ryu já foi classificada de Ninpo, fato que é visível nas características da escola.</p>
+                            <p>Shinryuken Masamitsu Toda foi o 26º Soke e um descendente de Tozawa Hakuunsai. O último membro da família Toda que praticou Ninjutsu foi Takamatsu Toshitsugu. Shinryuken Masamitsu Toda foi seu avô e mestre e transmitiu para ele os oito fundamentos mais importantes e fundamentais das artes marciais que são as técnicas da escola Gyokko Ryu, conhecida como Kihon Happo. São as técnicas fundamentais de todas as artes marciais.</p>
+                        </div>
+                        <hr>
+
+                        <div class="grupo">
+                            <span>Ninpo no Kissoku (As Nove Regras do Ninpo)</span>
+                        </div>
+                        <div class="apostila">
+                            <p>1 - O caractere Nin significa proteger a nação com a própria vida.</p>
+                            <p>2 - Esquecer o ego, ser paciente, não temas morrer</p>
+                            <p>3 - Não diga, nem demonstre nada diante do perigo</p>
+                            <p>4 - Quando se vier um inimigo poderoso, mantenha teu espirito indomável</p>
+                            <p>5 - Servir e proteger ao mestre da mesma maneira que a teus pais</p>
+                            <p>6 - Os vícios dissipam a tua efetividade</p>
+                            <p>7 - Estar bêbado afeta o seu raciocínio</p>
+                            <p>8 - Destruir o poder do teu inimigo, mas deixai-o viver</p>
+                            <p>9 - Não ensine a outros sem a permissão do seu mestre.</p>
+                        </div>
+                        <hr>
+
+                        <div class="grupo">
+                            <span>Algumas máximas dos ensinamentos da Gyokko Ryu:</span>
+                        </div>
+                        <div class="apostila">
+                            <p>“BUSHI GO KOKORO NO MOTTE TOTOSHI NO NASU” (O coração do guerreiro é precioso e essencial)</p>
+                            <p>Outra expressão muito usada dentro da escola é:</p>
+                            <p>“Shinshin Shingan” (Mente e Coração de Deus)</p>
+                            <p>Esta filosofia e as estratégias de Gyokko Ryu são ensinadas por Kuden (pela palavra do mestre), por Shinden (de coração para coração) para formar o que se conhece como Hiden (ensinamentos secretos).</p>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="accordion_item" id="15">
+                    <div class="accordion_header">
+                        <span><a href="#15">8 - KOTÔ RYÛ KOPPÔ JUTSU (BUJUTSU)</a></span>
+                        <div class="icon">
+                            +
+                        </div>
+                    </div>
+                    <div class="accordion_content">
+                        <div class="grupo">
+                            <span>(Escola do Tigre Derrotado)</span>
+                        </div>
+                        <div class="apostila">
+                            <p>虎倒流骨法術 - KOTÔ RYÛ KOPPÔ JUTSU - Fundada em meados de 1500 por Sakagami Taro Kunishige. Conhecida pelo Koppo Jutsu (quebramento ósseo), suas raízes estão em métodos de luta que foram trazidas da China ao Japão. Suas técnicas são duras e diretas. Além disso, em Koto Ryu é possível encontrar o estudo de armas ocultas.</p>
+                        </div>
+                        <hr>
+
+                        <div class="grupo">
+                            <span>REKISHI 歴史 (História)</span>
+                        </div>
+                        <div class="apostila">
+                            <p>Pensa-se que o Koto Ryu veio da China através da Coreia, trazido por Chan Busho, um guerreiro chinês, na forma semelhante à koshijutsu. No entanto, isso seria muitas centenas de anos antes do estilo ser moldado na forma de koppojutsu. A origem exata do estilo não é conhecida, mas foram organizadas as técnicas deste Ryu e formuladas em uma Ryuha adequadamente por Sakagami Taro Kunishige em 1542. Ele também foi um Soke de Gyokko Ryu Koshijutsu. Os dois sistemas compartilham muitas semelhanças, incluindo a Sanpo Gassho (Gassho Kuji Kiri em Gyokko Ryu).</p>
+                            <p>Havia uma grande quantidade de ninja, e alguns samurai, que foram treinados nos métodos da Koto Ryu. Momochi Sandayu é um dos mais famosos de todos ninja.</p>
+                            <p>Dada a natureza das técnicas da Koto Ryu e tendo em conta algumas das atuais artes marciais chinesas, pode se fazer uma justa conexão entre os dois. Um exemplo dos ensinamentos budistas pode ser visto a partir da seguinte citação tirada dos escritos de Takamatsu Toshisugu: “Ninguém possui o conhecimento acerca dos eventos de amanhã. Isso significa que nós não sabemos quando nossa vida vai cessar. No entanto, você não deve nunca ser surpreendido por qualquer tipo de acontecendo. Se uma mudança no processo cósmico ocorre, uma ação de corte é tentada por um adversário ou catástrofes naturais aconteçam, você nunca deve ser pego pela surpresa. Este é o espírito do Banpen Fugyo”.</p>
+                            <p>Koto Ryu contém um dos Kyusho (pontos de pressão) mais completos da Bujinkan, há outro provenientes do Takagi Yoshin Ryu. Koto Ryu tem um método único e pouco ortodoxo de kenjutsu, sua maneira de manipular a espada dava ao observador a impressão de que o espadachim era inábil, alterando o método de aperto e postura da espada à vontade. Existe também um kamae, exclusivo para o Koto Ryu, chamado “Mangetsu no Kamae “, em que a espada é mantido acima da cabeça e a lâmina é usada para refletir a luz solar nos olhos do oponente. Como alternativa, se estava chovendo, o sulco de sangue (oi) era usado para capturar a água da chuva, que era, em seguida, jogada nos olhos do inimigo.</p>
+                            <p></p>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="accordion_item" id="16">
+                    <div class="accordion_header">
+                        <span><a href="#16">9 - GIKAN RYÛ KOPPÔ JUTSU (BUJUTSU)</a></span>
+                        <div class="icon">
+                            +
+                        </div>
+                    </div>
+                    <div class="accordion_content">
+                        <div class="grupo">
+                            <span>(Escola da Verdade, Lealdade e Justiça)</span>
+                        </div>
+                        <div class="apostila">
+                            <p>義鑑流骨法術 - GIKAN RYÛ KOPPÔ JUTSU - Fundada em meados de 1500 por Uryu Hangan Gikanbo, este Ryuha é caracterizado pelos Kamaes difíceis e desequilibrados. Nesta escola também é estudado o Koppo Jutsu.</p>
+                        </div>
+                        <hr>
+
+                        <div class="grupo">
+                            <span>REKISHI 歴史 (História)</span>
+                        </div>
+                        <div class="apostila">
+                            <p>Gikan Ryu Koppo Jutsu foi fundada por Uryu Hangan Gikanbo (1.558 – 1.570), o qual foi Daimyo (senhor feudal) de Kawachi No Kuni.</p>
+                            <p>Disse que Uryu teria um punho tão poderoso que em uma ocasião quebrou a lâmina de uma espada em dois com um golpe. Ele também foi mestre de Hicho Jutsu e Senban Nage.</p>
+                            <p>O 10º Soke Uryu Gikan havia combatido na batalha que hoje se conhece como “Tenchigumi no Ran”, a qual teve lugar em 17 de Agosto de 1863 no exército do imperador, donde recebeu um disparo no braço. Ele continuou lutando somente com um dos braços, quando pode se retirou para a segurança de um templo cercado. Neste templo, foi encontrado por Ishitani Takeoi Masatsugu da Kukishin Ryu, que o auxiliou e o ajudou a escapar para Iga. Então uma nova amizade havia nascido, e a Ishitani lhe foi ensinado a Gikan Ryu e quando alcançou o nível requerido, Uryu lhe entregou o Menkyo Kaiden e o tornou no seguinte Soke da Gikan Ryu, adicionando assim, esta linhagem a outras das que ele já possuía como Soke, estas eram Kukishinden Ryu e Takagi Yoshin Ryu.</p>
+                            <p>Logo, Ishitani Takeoi Masatsugu transmitiu Gikan Ryu a Ishitani Matsutaro Takekage, e este aos 61 anos de idade na Era Meiji, ensinou esta e as outras escolas a Toshitsugu Takamatsu.</p>
+                            <p>Posteriormente Takamatsu Sensei, transmitiu a tradição da Gikan Ryu a seu melhor amigo e estudante Fumio Akimoto tornando-o o 14º soke desta escola, ele também já era Soke de Shoken Ryu Daken Taijutsu de sua linhagem familiar, porém este morreu prematuramente ao redor do ano de 1962 sem haver deixado um sucessor, pelo qual o Ryu retornou novamente a Takamatsu Sensei. Então, Takamatsu Sensei passou logo a Gikan Ryu para Masaaki Hatsumi, tal como está indicado no Bugei Ryuha Daijiten (Grande Enciclopédia das Artes de Guerra do Japão).</p>
+                            <p>A escola Gikan Ryu deriva de um estilo de Kosshi Jutsu que foi introduzido por Sasaki Orouemon Akiyari, incluindo também técnicas de Koppo Jutsu. Nesta escola se observam técnicas com difíceis posições corporais, as quais são muito baixas e com os pés apontando quase em direções opostas, o qual faz pensar que os Kamae de Gikan Ryu estão desequilibrados, porém somente quando os praticamos a fundo, que se descobre um equilíbrio perfeito.</p>
+                            <p>Este estilo também foi criado para campos de batalha, e tal qual o método de Koto Ryu, busca destruir a coluna do oponente.</p>
+                        </div>
+                        <hr>
+
+                        <div class="grupo">
+                            <span>Seu Princípio Moral</span>
+                        </div>
+                        <div class="apostila">
+                            <p>“Bufu Ni Sente Nashi” (Deste lado não virá o primeiro ataque)</p>
+                        </div>
+
+                    </div>
+                </div>
+        </div>
+<!--  -------------------- Separador -------------------- -->
+        <div class="content">
+            <div class="accordion_item" id="17">
+                    <div class="accordion_header">
+                        <span><a href="#17">Ninjutsu (忍術)</a></span> 
+                        <div class="icon">
+                            +
+                        </div>
+                    </div>
+                    <div class="accordion_content">
+                        <div class="grupo">
+                            <span>Fundamentos do Ninjutsu</span>
+                        </div>
+                        <div class="apostila">
+                            <p>O Ninjutsu é uma arte marcial não competitiva e uma ciência marcial que oferece um meio de treinamento que coloca corpo, mente e espírito juntos, essencial para o desenvolvimento do ser humano, colocando o homem em harmonia com a natureza, derrotando suas próprias ineficiências, melhorando sua autoconfiança e a capacidade de viver.</p>
+
+                            <p>Desde seus primórdios, o Ninjutsu é naturalmente praticado por crianças, jovens, idosos e mulheres, sendo as últimas chamadas de Kunoichi e consideradas como formidáveis e temíveis guerreiras ninjas.</p>
+
+                            <p>O Ninjutsu remonta há mais de 900 anos, em um contexto histórico em que os Samurais, classe de guerreiros, dominavam o Japão. Eles controlavam a terra e seus moradores, numa espécie de feudalismo oriental. O lorde (chefe de um grupo de samurais) era o Daimyō　| 大名, a única pessoa a quem os samurais deviam respeito e obediência. O Ninjutsu nasceu no Japão feudal, quando monges Tibetanos se espalharam por vários países na Ásia, um deles a China, onde os monges, no fim da dinastia Ming início da dinastia Chin (Manchu, por conta da invasão Manchu) dedicaram-se ao terrorismo, espionagem e resistência contra os Manchú para recuperarem suas terras. Durante a dinastia Chin os templos foram destruídos e os monges se refugiaram em outros países, um deles o Japão, onde a Arte Marcial que praticavam deu origem a várias outras artes, o Ninjutsu foi uma destas, monges residentes nas montanhas das regiões de Iga e Koga tiveram contatos com Ronins que lá constituíram família. O que hoje é conhecido como Ninja, que seguiam um código de conduta diferente dos Samurais, o Ninpoh Ikkan. Com o passar dos anos os ninjas passaram a trabalhar como mercenários e posteriormente o governo japonês passou a usa-los como espiões e assim foi até a 2ª Guerra Mundial. A explosão de artes marciais no ocidente, por volta de 1970, levou dois homens a procurar por algo diferente: Doron Navon e Stephen Hayes contrataram um mestre de Ninjutsu oriundo do Japão, de uma linhagem centenária de instrutores. Dessa forma a arte foi trazida para o Ocidente. Hoje em dia o ninjutsu é usado como defesa pessoal, e é até usado em alguns países pelo exército, por sua agilidade em desarmamento e suas técnicas em ataque, defesa e imobilização.</p>
+
+                            <p>Os ninjas desenvolveram uma técnica de luta e estratégia capaz de enfrentar todo tipo de combate corporal ou com armas, onde envolve luta de solo, combate a distância por fulminantes seqüências técnicas contra o adversário, combate com armas tradicionais, defesa contra armas de fogo, torções gerais do corpo, chaves articulares, manipulação dos pontos vitais humanos, estratégias de defesa pessoal, autosuficiência sem luta, psicologia manipulativa reversa, refinamento espiritual, por técnicas de meditação, respiração, controle de energia vital, focalização mental objetiva, aquisição de disciplina e perseverança, superação das vulnerabilidade emotivas, hipnose, ilusionismo, técnicas de disfarce, espionagem.</p>
+
+                            <p>A rigor, toda e qualquer arma pode ser utilizada na prática do Ninjutsu incluindo o uso do próprio corpo ou objetos improvisados inclusive objetos comuns como um guarda-chuva, um lenço, uma chave de fenda ou do ambiente como pedras, madeiras. O que importa ao praticante é a capacidade de vencer o oponente em uma luta, independente de modo justo ou injusto, armado ou desarmado. Apesar desta característica, algumas armas foram associadas à figura do ninja, sejam por motivos históricos, seja pelo ideário envolvendo esses personagens. E elas anteriormente eram ferramentas usadas no plantio que evoluíram; Segundo historiadores os camponeses precisavam se defender dos samurais que vinham cobrar impostos, surpreendendo-os de alguma forma.</p>
+
+                            <p>O Ninjutsu foi um sistema de vida adotado por uma casta de guerreiros do Japão antigo, que consistia em um aprendizado de artes marciais, espionagem, administração e disciplina ascética com fins morais e de refinamento espiritual. Depois de ter sido decisivo e marcante nas guerras frequentes do Japão feudal, o Ninjutsu passou a ser reconhecido como a maneira mais rápida de se encerrar um conflito. Desta forma, várias famílias de samurais se dedicaram a manter e aperfeiçoar o Ninjutsu, que literalmente significa, arte do guerreiro das sombras. Das várias famílias, as principais foram as da província de Iga e Koga.</p>
+
+                            <p>Uma figura importante que contribuiu para o ressurgimento do Ninjutsu no século XX foi Toshitsugu Takamatsu, mestre de Hatsumi. Toshitsugu recebeu ao longo de sua vida os ensinamentos de diversas escolas esotéricas e marciais que fatalmente corriam o risco de desaparecerem diante das mudanças culturais e tecnológicas que tomavam o Japão desde a era Tokugawa. Assim, depois de vários anos praticando e estudando as escolas antigas de artes marciais, entre elas a Koto ryu, Togakure ryu e Kukishinden ryu, Takamatsu também viajou para a China e estudou com os grandes mestres do boxe chinês. Em 1919 dedicou-se aos ensinamentos da seita budista tântrica Mikko, sendo ordenado sacerdote. Mestre Toshitsugu era oriundo de uma família nobre e respeitada e por várias vezes apenas a menção de seu nome ou de seu apelido marcial, Moko no Tora (Tigre da Mongólia) encerraram várias desavenças com a Yakuza, a máfia japonesa. Depois de seus anos de aperfeiçoamento das artes marciais que compunham o Ninjutsu e seu período de sacerdócio, Takamatsu se casou aos 32 anos de idade e foi morar em Kashiwara-shi. Por volta dos seus 70 anos conheceu seu melhor estudante e amigo, Masaaki Hatsumi, com o qual treinou durante mais de 15 anos na província de Nara.</p>
+
+                            <p>Ao fim de seus dias, Takamatsu nomeou a Hatsumi, único herdeiro do Ninpo. Morreu a 2 de abril de 1972 à idade de 85 anos.</p>
+
+                            <p>Hatsumi Sensei criou um sistema único de treinamento englobando as nove escolas herdadas de seu mestre, no início denominado Ninpo Tai Jutsu e em seguida viria a abrir as portas da filosofia Ninpo aos primeiros alunos ocidentais. Fundou em 1972 a então conhecida Bujinkan Budo Tai Jutsu. O termo Bujinkan significa: “A Morada do Guerreiro Divino” assim como “A Casa do Deus Guerreiro”, lembrando que este termo foi uma criação de Sensei Hatsumi em homenagem a seu mestre Toshitsugu Takamatsu.</p>
+
+                            <p>Sensei Hatsumi é mundialmente conhecido pelo seu trabalho em prol da divulgação mundial do Ninjutsu e pela sua participação em seriados da TV japonesa.</p>
+
+                            <p>Atualmente o Ninjutsu é praticado em mais de cem países e, apesar de ter sído vítima do sensacionalismo da mídia nas décadas de 70 e 80, rapidamente vem assumindo seu lugar graças ao trabalho sério e competente dos seus representantes sob a direção técnica e filosófica de Soke Hatsumi.</p>
+
+                        </div>
+                        <hr>
+
+                        <div class="grupo">
+                            <span>As 18 Disciplinas Ninja (Ninja Jūhakkei)</span>
+                        </div>
+                        <div class="apostila">
+                            <p></p>
+                            <div class="imagemB">
+                                <img src="./img/disciplinas.jpg">
+                            </div>
+                        </div>
+                        <hr>
+
+                        <div class="grupo">
+                            <span>Historia do Ninjutsu</span>
+                        </div>
+                        <div class="apostila">
+                            <p>Ninjutsu é o termo que denomina a arte Ninja japonesa ligada aos misteriosos Ninjas, guerreiros do Japão antigo. A origem dessa arte se perde em milhares de anos na história japonesa. E diferente das artes marciais clássicas como o Judo, Karate ou Aikido, não há um criador em um ano específico que tenha determinado o surgimento da arte Ninja. Como também não existem documentos ou registros claros que descrevam o surgimento exato do Ninjutsu.</p>
+                            <p>A origem real está ligada à união de elementos da história chinesa e japonesa. Um desses fatores está ligado aos Yamabushi e Sennin que eram eremitas das montanhas de Iga e Koga, na ilha de Honshu. Estes monges tinham uma cultura Taoísta e militar proveniente da China. Muitos homens como Samurais ou Ronins iam encontrar-se com esses Senins e com eles aprendiam novas formas de lidar com a natureza e de estratégia militar. Esse homens são considerados os formadores das primeiras famílias Ninja. Outro fator importante foram os nobres estrategistas militares chineses que depois da crise da dinastia Tang se refugiaram no Japão. Com eles vieram seus conhecimentos militares e suas escolas de técnicas de combate.</p>
+                            <p>Desde o primórdio dos tempos em que o homem primitivo buscava meios estratégicos para sobreviver, já existia literalmente, a arte do Ninjutsu, pois o Ninjutsu sempre foi baseado em princípios de sobrevivência humana, assim, podemos dizer que, a arte dos guerreiros das sombras, ou seja, o Ninjutsu vem a ser o estudo das vulnerabilidades humanas e meios para se vencer tais problemas sem afetar a harmonia natural do universo em que o Ninja se encontrava. A estratégia operacional utilizada pelos antigos Ninjas buscava manter a supremacia íntegro corporal na execução das missões a que o guerreiro Ninja era designado, pois sua descoberta seria fatal na maioria das vezes, tanto pela negligência do não cumprimento da missão quanto por suicídio, uma vez que, o guerreiro Ninja não aceitava a derrota, e o suicídio significava para ele a purificação do espírito. Os Ninjas na maioria das vezes executavam as missões a que eram designados, sozinhos ou em pequenos grupos de no máximo seis guerreiros, pois grande parte de suas missões centralizava-se na arte da espionagem, o campo mais importante na movimentação de um exército na Arte da Guerra: Pois jamais haverá em todo o exército relações mais íntimas que as mantidas com espiões. Nenhuma outra deverá haver mais segredos.</p>
+                            <p>Os antigos Ninjas não podiam ser empregados utilmente sem um certo grau de sagacidade intuitiva. Antes de emprega-los, seus superiores deveriam ter e certeza de sua integridade de caráter e do tamanho de sua experiência e habilidade. Um rosto atrevido e uma disposição ladina são mais perigosos que montanhas e rios, é preciso ser gênio para penetrar em ambos, e os Ninjas sem a menor sombra de dúvida eram. As origens combativas e marciais do Ninjutsu teve como matriarca a antiga China, em especial o Templo Shaolin. </p>
+                            <p>Em certa época em que existia os monges ortodoxos Shaolin, existia também muito sofrimento entre o povo de médio e baixo nível social, sendo unicamente responsável, o governo chinês, o mesmo humilhava e massacrava o povo injustamente de maneira cruel e impune; altos impostos e morte sumária para o não pagamento dos impostos, e qualquer motivo que viesse a desabonar os cofres públicos e a integridade do governo, contribuindo assim para o crescimento da miséria e da fome. Todavia, vendo ta situação, os monges Shaolin vieram a se tornar guerreiros da noite, tanto que, seus trajes que antes eram de cores claras vieram a se tornar de cores escuras, possibilitando o deslocamento dos mesmos durante a noite, camuflando-se nas sombras da escuridão, onde exerciam atos de espionagem e sabotagem, visando descobrir e erradicar os planos governamentais contra o povo, tal acontecimento teve início na dinastia Chin. Tal evidência com relação a filosofia Shaolin e as cores dos uniformes é marcada até hoje pelas escolas de Kung-Fu que adotam em sua maioria uniformes negros.</p>
+                            <p>No final os manchu vieram a descobrir os atos que eram cometidos pelos monges Shaolin veio então a ocorrer a invasão e destruição dos Templos Shaolin (norte e sul). Com isto muitos monges foram mortos, mas os que conseguiram escapar, fugiram para outros países e levaram consigo seus conhecimentos marciais e filosóficos. Muitos chegaram até o arquipélago japonês, e com medo de serem descobertos e perseguidos pela doutrina religiosa que seguiam, fugiram para as montanhas, mais propiamente na região de Iga e Koga, onde o acesso era de difícil descoberta e entrada. </p>
+                            <p>Nas montanhas japonesas, esta semente deu seus maiores frutos, sendo uma sociedade guerreira religiosa, viviam para os estudos esotéricos e práticas marciais. Fortalecendo dia a dia suas fileiras combativas, pois com o decorrer dos anos, os povoados ao redor ficaram sabendo da existência desta sociedade, contribuído para que novos adeptos viessem a surgir e estruturar ainda mais o início de uma poderosa arte marcial de guerra que seria conhecida no futuro como Ninjutsu, porém o Japão antigo estava dividido em feudos que lutavam constantemente entre si pelo nome do Shogunato, veio também a intervir na filosofia e modo de vida dos antigos Samurais, cujo significado literal vem a ser, "servir e proteger". Os antigos Samurais andavam livremente pelo povo, cultivando e levando o senso de justiça como padrões de suas vidas, eles eram como policiais, porém a influência do Shogunato fez com que os Samurais se voltassem contra o povo, a que deviam respeito e devoção, tal influência negativa, resultou de maneira que começaram a exercer seus poderes sociais de forma monstruosa e revoltante, onde muitas mortes foram cometidas injustamente pelo simples fato do não cumprimento das leis do Shogunato.</p>
+                            <p>Neste ponto de extrema violência e injustiça, veio a aparecer os monges guerreiros das montanhas, conhecidos como Yamabushi, tais monges possuíam no íntimo, um sentido diferente de justiça, cujo código de honra estava relacionado com a liberdade por excelência do homem e da benevolência para com o universo, este sentido é conhecido no Ninjutsu como Ninja Ko No Kokoro, constituindo-se um grande perigo para o império Shogunato e para a classe Samurai, pois para eles, os monges nada mais eram do que rebeldes sociais.</p>
+                            <p>O ideograma Nin, utilizado no Ninjutsu, significa justamente isso; resistência, paciência, força interior, oculto e sombras; o problema para o Shogunato começou então neste ponto, a descoberta dos valores humanos pelo o povo, por intermédio dos Yamabushi. Porém, estes mesmos monges vieram a receber apoio de muitos Daymios, que desejavam possuir grandes conhecimentos marciais, e, quando vieram trabalhar para os Daymios ficaram conhecidos como Ninja, pois exerciam atos de espionagem, sabotagem e desmembramento das fileiras militares do Shogunato. Tal soberania técnica operacional dos Ninjas teve forte apoio dos conhecimentos guerreiros dos Ronins e também dos Yamabushis e tornaram-se membros efetivos da causa, talvez pelo fato, de verem que realmente o Japão necessitava de uma unificação pacífica para o fortalecimento da nação, uma vez que, já começava a ocidentalização do arquipélago japonês. </p>
+                            <p>Desde o ano de 593 D.C tem-se referências de linhas de espionagem Ninjas a serviço do príncipe Shotoku Taiski, que em muito contribui para a popularidade do guerreiro Ninja como um ser humano capaz do impossível aos olhos humanos, porém, tudo não passava de técnicas de ilusionismo operacional iniciada pelos Ninjas no governo do príncipe Shotoku Taiski baseando-se unicamente nas lendas e crendices religiosas, constituindo-se uma imagem de invulnerabilidade e soberania sobre humana.</p>
+                            <p>Todavia o auge do Ninjutsu veio a ocorrer durante o período Heian, de 795 à 1185, onde o Ninjutsu se estruturou como uma terrível arte de guerra onde não existia a palavra "derrota". Tudo em favor da unificação do Japão em uma grande e soberana nação. Contudo, durante o período Kamakura, de 1192 à 1333, o Ninjutsu viveu sua idade de ouro e de incontáveis vitórias em campo de batalha real, onde ainda se submetiam a ditadura militar do Shogun, todavia, muito mais enfraquecida em virtude da capacidade estratégica que o antigo guerreiro Ninja tinha de sabotar e desmembrar gradativamente as fileiras militares da ditadura Shogunato.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion_item" id="18">
+                    <div class="accordion_header">
+                        <span><a href="#18">Taijutsu</a></span> 
+                        <div class="icon">
+                            +
+                        </div>
+                    </div>
+                    <div class="accordion_content">
+                        <div class="grupo">
+                            <span>Técnicas de Combate Desarmado</span>
+                        </div>
+                        <div class="apostila">
+                            <p>Em Ninjutsu, a arte do corpo é definido caracteristicamente por princípios técnicos centralizados em fundamentos de definição combativa através de chaves, torções, estrangulamentos, projeções e ataques a pontos vulneraveis do corpo do oponente. O Tai Jutsu é uma das mais importantes áreas do treinamento ninja, requerendo disciplina e perseverança para o seu total domínio, pois muitos anos de prática serão necessários para a dominação dos princípios técnicos e combativos do Tai Jutsu. A principal característica desta área de treinamento é a luta desarmada, ou seja, a utilização do corpo por completo como arma de combate.</p>
+                            <p>O <b>TAIJUTSU</b> é o conjunto de técnicas de combate onde não se usava arma, o NINJA dependia apenas de suas mãos para se defender. Esse conjunto de técnicas se subdivide em três tipos distintos de artes, que por sua vez se dividem em outras séries de técnicas, são eles:</p>
+                        </div>
+                        <hr>
+
+                        <div class="apostila">
+                            <p><b>TAIHEN-JUTSU:</b> Técnicas de movimentação, deslocamento e colocação do corpo, se aprende a andar silenciosamente, esquivas, agilidade (saltos, equilíbrio corporal), posições de combate, rolamentos, quedas etc.</p>
+                            <p><b>DAKEN-TAIJUTSU:</b> Técnicas de combate onde se usa golpes de percussão e/ou pressão (socos, chutes, cotoveladas, joelhadas, etc.), é um trabalho particular e diferente do Karatê ou de qualquer outra arte da mesma natureza. O mesmo trabalho e feito para o endurecimento dos membros e para o estudo da anatomia do corpo.</p>
+                            <p><b>JU-TAIJUTSU:</b> É o conjunto de técnicas suaves (chaves, projeções, imobilizações, estrangulamento, etc.), também é um trabalho particular diferente do Judô ou do Jujutsu. Também se trabalha os pontos vitais (<b>SHITOJUTSU</b>), são centros nervosos ou pontos de acupuntura, onde se ataca o sistema de circulação de energia no corpo.</p>
+                            <p>É importante ressaltar que o <b>NINJUTSU</b> é mais antigo do que quase todas as artes marciais hoje ensinadas em academias, por isso suas técnicas são únicas diferentes de qualquer outra.</p>
+                            
+                            <div class="imagemB">
+                                <img src="./img/taijutsu.png">
+                            </div>
+                        </div>
+                        <hr>
+                        
+                        <div class="grupo">
+                            <span>Habilidades</span>
+                        </div>
+                        <div class="apostila">
+                            <p>Taihen Jutsu (movimentação do corpo);</p>
+                            <p>Dakentai Jutsu (luta desarmada);</p>
+                            <p>Jutai Jutsu (combate corpo a corpo);</p>
+                            <p>Koppo Jutsu (ataque e dilaceramento ósseo);</p>
+                            <p>Koshi Jutsu (ataque aos nervos e órgãos do corpo);</p>
+                            <p>Katame Waza (técnicas imobilizativas);</p>
+                            <p>Swari Gata (formas combativas de solo);</p>
+                            <p>Ha Jutsu (arte de escapes e fugas);</p>
+                            <p>Shime Waza (estrangulamentos);</p>
+                            <p>Gyaku Waza (técnicas de controle articular);</p>
+                            <p>Gaeshi Waza (contra técnicas).</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion_item" id="19">
+                    <div class="accordion_header">
+                        <span><a href="#19">Kamae Gata</a></span> 
+                        <div class="icon">
+                            +
+                        </div>
+                    </div>
+                    <div class="accordion_content">
+                        <div class="apostila">
+                            <p>Nas palavras de O SENSEI as formas individuais, ou seja, os kamaes, são expressões do coração. Quando toda a natureza existente dentro de um coração de ocultar(SHINOBI) a expressão desse coração é um KAMAE.  Quando se torna possível manter-se sereno, acalmando seu coração, se cria duas forças. A força de um ataque inimigo e a força de sua resposta para disolve-la naturalmente, é também considerado um KAMAE. Os KAMAES devem ser relaxados e flexiveis, adaptáveis a estrutura física de cada um e de cada situação.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion_item" id="20">
+                    <div class="accordion_header">
+                        <span><a href="#20">Kaiten Waza</a></span> 
+                        <div class="icon">
+                            +
+                        </div>
+                    </div>
+                    <div class="accordion_content">
+                        <div class="apostila">
+                            <p>Em ninjutsu, UKEMI significa receber a força do inimigo e deixar passar o fluído, é também inverter ou cambiar o próprio corpo livremente quando está em combate. A prática do KAITEN e UKEMI em ninjutsu tem por finalidade:</p>
+                            <p>1 - Condicionar o corpo corretamente em situações de auto-proteção;</p>
+                            <p>2 - Condicionar e fortalecer a musculatura que permeabiliza a coluna vertebral;</p>
+                            <p>3 - Fazer com que o aluno aprenda a dominar seu centro de gravidade;</p>
+                            <p>4 - Ter total flexibilidade em técnicas evasivas diante de diversas situações de combate.</p>
+                            <p>A um ditado que diz: Quem não sabe cair e harmonizar-se com o chão, não sabe lutar!</p>
+                            <p>Praticar kaiten é também relaxar a musculatura no ato da respiração.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion_item" id="21">
+                    <div class="accordion_header">
+                        <span><a href="#21">Dakentai jutsu Ninpo</a></span> 
+                        <div class="icon">
+                            +
+                        </div>
+                    </div>
+                    <div class="accordion_content">
+                        <div class="apostila">
+                            <p>A pratica de DAKENTAI JUTSU implica em formas de golpear com o corpo desarmado. A prática de DAKENTAI em ninjutsu  é utilizada para quebrar a resistência física e psicológica do adversário com a finalidade de proporcionar aderência as técnicas finalizativas propriamente ditas. Dificilmente utiliza-se DAKENTAI para finalizar um combate, pois a eficiência está em quebrar a intenção de ataque de uke sem ferí-lo e sim imobilizado dolorosamente tendo o poder de manipular seu oponente dentro de suas intenções, que evidentemente devem ser pacíficas, finalizando, a prática de DAKENTAI visa objetivar os pontos vitais e estrutura óssea do oponente, aderindo assim correto o taijutsu.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+<!--  -------------------- Separador -------------------- -->
+        <div class="content">
+            <div class="accordion_item" id="22">
+                <div class="accordion_header">
+                    <span><a href="#22">HATTORI HANZO e HATTORI RYU</a></span>
+                    <div class="icon">
+                        +
+                    </div>
+                </div>
+
+                <div class="accordion_content pro10">
+                    <div class="grupo"> 
+                        <span>Título da Batalha</span>
+                    </div>
+                    <div class="apostila">
+                        <p>Uma das maiores famílias Ninja de Iga foi sem dúvida a família HATTORI. Eles vieram de Otomo Hosoto, um alto membro de uma das mais importantes famílias japonesas, e da China. A família Otomo estava a serviço da família imperial principalmente em função de seus conhecimentos de combate. Os filhos de Hattori, foram permitidos mais tarde de construir suas próprias linhagens de família. De acordo com as outras fontes foi Iga Heinazaemon No Jo Ienaga(o fundador do Kumogakure Ryu) que deu ao filho mais velho, Hattori Heitaro Koreyuki, o direito de usar o nome da família Kamihattori, o filho do meio, Hattori Heitaro Yasuyori fundou o nome da família Nakahattori, e o mais novo fundou o nome da família Shimohattori.</p>
+                        <p>Cada família tinha seu próprio MON (escudo), onde o Kamihattori Mon era Yahazu Nihon (duas cabeças de flechas) Nakahattori Mon foi Ichitomoe (um arco), e Shimohattori Mon foi Yaguruma (oito cabeças de flecha em um anel). A condição de cada família Ter seu próprio escudo aponta para o fato de que eles tiveram a mesma classificação como um samurai. De acordo com os livros de história moderna no Japão Hattori Hanzo, foi um samurai de Iga. Quando Oda Nobunaga invadiu Iga, só oitenta pessoas das três famílias Hattori Sobreviveram. Eles fugiram para diferentes partes do Japão.</p>
+                        <p>A família Kamihattori escapou para vila de Nagaoka em Echigo. A família Shimohattori recebeu proteção da família Tokugawa em Mikawa ou da família Ochi, na vila de Takatori, na província de Yamato. Nakahattori fugiu para as montanhas Takano.</p>
+                        <p>O mais famoso Ninja da Historia foi, sem sombra de dúvida Hattori Hanzo Masashige(1541-1596). Ele foi o filho de Hattori Nazo Yasunaga, que por meio de hereditariedade foi um vassalo da família de Tokugawa, neste período Tokugawa é conhecido como Matsudaira. Eles vieram da linhagem da família Kamihattori, se eles vieram da família Heitaro ou Chigachi, não se sabe.</p>
+                        <p>Hattori Hanzo foi praticamente criado com as artes marciais como sua principal ocupação na vida. Em 1557, quando Hattori Hanzo tinha 16 anos ele foi pela primeira vez lutar em um campo de batalha. Foi à noite quando Tokugawa Ieyeaso atacou Yzishigo em Migawa (castelo em Udo). Ele ganhou sua primeira recompensa em função de suas extraordinárias técnicas de combate no campo de batalha. Ele ganhou o apelido de Hanzo o fantasma, e Tokugawa também reconheceu suas habilidades depois que ele participou na batalha de Anagawa em 1570, e da batalha em Mikata Ga Hara em 1572. Outro apelido que ele ganhou por causa de sua habilidade foi “Hanzo o diabo”</p>
+                        <p>A família Hattori não foi Watari Ninja (mercenários), eles eram fieis para com Tokugawa. Quando Oda Nobunaga foi assassinado por Akechi Mitsuhide, Tokugawa estava em uma vila perto de Osaka e foi ameaçado pelas tropas de Akechi. Tokugawa então teve a assistência de Hattori Hanzo e Taro Shiro, um Ninja de Koga. Juntos com 300 Ninjas eles ajudaram Tokugawa a escapar de Okazakijo usando Goton Jutsu (técnicas de se esconder na natureza) e técnicas especiais de como avançar com segurança. Os muitos méritos de Hattori Hanzo deram a ele um grande reconhecimento e ele foi condecorado com o comando dos Samurais de Hasenshi. Hattori Hanzo morreu em batalha em 04 de Dezembro de 1596, quando ele tinha uma tropa que iria aterrorizar os Ninjas de Fuma Ryu em Kanagawa. Hanzo e sua tropa tinha seguido os Ninjas da Fuma Ryu no mar em barcos, mas os Ninjas da Fuma Ryu utilizaram técnicas aquáticas para destruir o leme dos barcos de Hanzo, então quando ele e seus homens pularam na água para nadar para a costa os Ninjas de Fuma Ryu tinham enchido a água de óleo e atearam fogo, todos morreram queimados. Hattori Hanzo foi sucedido por Hattori Iwami No Kami Masanari.</p>
+                        <p>A população japonesa ainda canta sobre Hanzo em áreas em volta de Kawauchi, ele também foi conhecido como “O Grande Lanceiro”, um Guerreiro muito forte. Não é muito o que liga ele ao Ninjutsu, ele foi mais conhecido como um Bushi (um samurai) de Iga.</p>
+                        <p>Durante o comando de Tokugawa Iemitsu muitos Ninja não gostavam do jeito que eles eram desonrados e tratados. Então eles escolheram preparar uma revolta contra os descendentes de Hattori Hanzo, que continuavam a serviço do Shogun. A revolta foi conhecida como “O Incidente no Templo de Sasa”, a revolta foi vencida pelas tropas do Shogun e os líderes foram capturados e executados. A revolta foi o fim da grande era da família Hattori, eles perderam todo o seu status por causa de suas faltas em lidar com a situação.</p>
+                        <p>Durante a grande era da família Hattori, antes da invasão de Oda Nobunaga a batalha de Tenno Iga no Ran, existiam muitos membros que foram bem sucedidos no Clã da família Hattori Ryu. Alguns deles foram conhecidos como:</p>
+                        <div class="thattori">
+                            <table class="tbhattori">
+                                <tr>
+                                    <td>
+                                        HATTORI GENSUKI
+                                    </td>
+                                    <td>
+                                        HATTORI MAGOHEI
+                                    </td>
+                                    <td>
+                                        HATTORI SHINCHIKURO
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    HATTORI DENJIRO
+                                    </td>
+                                    <td>
+                                    HATTORI MAIZO
+                                    </td>
+                                    <td>
+                                    HATTORI JINROKU
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    HATTORI DENEMON
+                                    </td>
+                                    <td>
+                                    HATTORI SHINKURO
+                                    </td>
+                                    <td>
+                                    YAMAOKA SOBEI
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    YAMAOKA SUKETARO
+                                    </td>
+                                    <td>
+                                    YAMAOKA ICHINOSUKE
+                                    </td>
+                                    <td>
+                                    YAMAOKA JINTARO
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    YAMAGUCHI SUKETARO
+                                    </td>
+                                    <td>
+                                    YAMANAKA KAKUBEI
+                                    </td>
+                                    <td>
+                                    FUKUNOKAMI TEISAINYUDO
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    HANCHI HANSUKE
+                                    </td>
+                                    <td>
+                                    IGA NARUTO
+                                    </td>
+                                    <td>
+                                    AKIMOTO KASAI
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    YAMANAURCHI KEITARO
+                                    </td>
+                                    <td>
+                                    SERA GENROKU
+                                    </td>
+                                    <td>
+                                    OTSUKA BANSAKU
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <p>Como conclusão do Clã da Família Hattori, pode-se mencionar que Ishitani Matsutaro Takakage teve um antepassado que era um Chunin no Clã Ninja de Hattori Hanzo. Ishitani Matsutaro Takakage foi sensei de Takamatsu Toshitsugu e Takamatsu foi Sensei de Masaaki Hatsumi, o 28º Soke na Kukishinden Ryu. Ishitani morreu no lapso de Takamatsu no inicio do século XX, Takamatsu morreu em 1972. E Hatsumi Sensei é o atual Soke da Bujinkan.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+<!--  -------------------- Separador -------------------- -->
+        <div class="content">
+            <div class="accordion_item" id="23">
+                <div class="accordion_header">
+                    <span><a href="#23">O Caminho do BUDÔ</a></span>
+                    <div class="icon">
+                        +
+                    </div>
+                </div>
+                <div class="accordion_content">
+                    <div class="apostila">
+                        <p><i><b>"O Ninjutsu dentre o Caminho das Artes Marciais, ou seja, o BUDO, é conhecido como NINPO, que vem a ser o conjunto de técnicas e principalmente de conceitos filosóficos adaptados para os dias de hoje. E graças a seus cultuadores, zelosos em manter sua pureza primitiva, podemos hoje, em pleno século XXI, desfrutar de seus ensinamentos."</b></i></p>
+                        <p>O conceito que se tem atualmente de BUDO é muito equivocado pois a sua tradução literal como sendo o caminho da guerra não explica tudo o que estas duas palavras contém. Na verdade significa muito mais do que isto. Já escreveram também como sendo um código de horra militar e tarmbém não é só isto. A atitude ociderntal é levada para o raciocínio puramente intelectual do significado de BUDO, Mas para entender, a pessoa tem que Primeiro Saber, Segundo Sentir e Terceiro Praticar alguma arte marcial. Quase todos que entram em contato com as lutas Japonesas, de um modo ou de outro tomam conhecimento de deterrninadas regras e conduta de ensino sobre Ninjutsu e determinadas artes marciais. Contudo, apesar de terem quase uma regra geral, varia muito de um para outro professor. Se dissermos que a conduta de um praticante de uma arte marcial tem algo como o BUDO não estaremos enganados, mas é claro que é uma parte insignificante do Caminho que só se pratica durante os treinos. Aquele que realmente segue o BUDO está a procura de algo interno através de uma prática fisica e psicológico. Sendo assim encara seus adversários como alguém que esteja lhe rmostrando seus próprios defeitos, não aceitando derrota em hipótese nenhuma pois, se aceitasse, não estaria em busca da perfeição. O treino leva a pessoa a reconhecer sua fraqueza e a constância, a corigi-la. Por este motivo, treinar exclusivarnente para fins competitivo leva a pessoa a ter orgulho e vaidade sem o perceber. Se o lutador quer apenas ser o melhor do que outro então esta longe do Caminho e a meta não é a mesma daquele que vive o que faz sem se apegar no extermo, muito menos numa condição de vitória ou derrota. Mesmo que a pessoa lute bem ou seja um "grande nestre" pode estar muito longe de ser uma pessoa que esteja no Caminho. Pois assum como a meta está dentro da pessoa, está também fora e não pode ser separada. E aquilo que procuramos é justarnente o que indica o nosso caminho.</p>
+                        <hr>
+                        <h3>AS LEIS IMUTAVEIS DO BUDÔ</h3>
+                        <p>1 - Aperfeiçoar-se a todos os momentos no combate e saber a respeito da vida e dos adversários, de dentro e de fora.</p>
+                        <p>2 - Pôr a verdade e o caminho da retidão acima das próprias fraquezas, procurando vence-las dentro de si.</p>
+                        <p>3 - Não julgar ninguém forte ou invencivel. Se isso vier em mente, lembrar-se que se há alguém com força, é sinal que nós estamos fracos.</p>
+                        <p>4 - Por menos que se faça para alcançar algo é sempre alguma coisa que nos levara ao nosso objetivo. Esperar uma oportunidade para iniciar ou continuar algo é imaginação sem valor.</p>
+                        <p>5 - O pior adversário que encontramos em nosso caminho é nosso próprio ser, que pode se preparar no momento e não o faz.</p>
+                        <p>6 - No caso de desvantagem técnica prolongue a mesma até que surja uma oportunidade de sobrepujá-la, através de sua própria estruturação técnica, esforçando-se ao máximo.</p>
+                        <p>7 - Não mudar diante de vários adversários, mesmo que isso pareça razoável, sua resolução de vencê-los. Lembre-se que a quantidade não aumenta o perigo e sim o poder individual de cada adversário.</p>
+                        <p>8 - Prezar e gozar a vida sem deixa-la interferir no caminho do combate. Aceitá-la como uma parte, não como urn todo.</p>
+                        <p>9 - Procure alcançar aquilo que está sempre acima de seu alcance, não tendo em mente que, o que sabes é o suficiente, pois isso é o início da decadência.</p>
+                        <p>10 - Não alimentar rancor em nenhuma situação ou mesmo sentimentalismo, diante de um evento qualquer.</p>
+                        <p>11 - Esperar de tudo, três situações: Uma farsa, outra contra e uma terceira indiferente, procurando se manter como um espelho por fora e com determinação e objetivo por dentro.</p>
+                        <p>12 - Não se apegar a nada que pertença a vida, procurando sempre ver o real e a falha no evidente, encarando os obstáculos como algo que nos leva a perfeição, vencendo-os.</p>
+                        <br>
+                        <p><i><b>O Ninja é como o eterno vento...</b></i></p>
+                        <p><i><b>Quando desejo tocá-lo, não me é possível tocar</b></i></p>
+                        <p><i><b>Quando desejo vê-lo, não me é possível enchergá-lo</b></i></p>
+                        <p><i><b>Quando desejo ouvi-lo, não me é possível ouvir</b></i></p>
+                        <p><i><b>Somente consigo senti-lo</b></i></p>
+                        <p><i><b>Como o majestoso vento soprando em minha face...</b></i></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion_item" id="24">
+                <div class="accordion_header">
+                    <span><a href="#24">NINJA NO KOKORO</a></span>
+                    <div class="icon">
+                        +
+                    </div>
+                </div>
+                <div class="accordion_content">
+                    <div class="grupo">
+                        <span>17 preceitos do coração benevolente</span>
+                    </div>
+                    <div class="apostila">
+                        <p>1- SERENIDADE: Seja tranqüilo em seu interior. Deixe que essa paz e essa alegria interior se irradiem através de um semblante sereno. Um semblante sereno é pacífico, sorridente e não demonstra nenhuma emoção violenta. Seja como a superfície de um lago.</p>
+                        <p>2 - REGULARIDADE: Seja regular em teus hábitos diários, em tuas práticas espirituais e em teu trabalho. Levante-te sempre a mesma hora. Seja pontual em tuas atividades. Isso te libertará de preocupações e ansiedades. Fará sempre o correto em seu justo momento.</p>
+                        <p>3 - SINCERIDADE: Deixa que tuas palavras coincidam com seus pensamentos. Deixa que tuas ações coincidam com suas palavras. Deixa que haja harmonia entre teus pensamentos, palavras e ações.</p>
+                        <p>4 - SIMPLICIDADE: Seja natural. Fale com moderação. Não retorça as palavras nem os assuntos. Seja franco. Evite a diplomacia, dissimulação e a sinuosidade. Vista-se com moderação. Haja com a pureza de uma criança.</p>
+                        <p>5 - VERACIDADE: Seja fiel. Cumpra tuas promessas. Não exageres. Não retorça os assuntos. Pensa 2 vezes antes de falar. Fale docilmente. Seja preciso no que diz.</p>
+                        <p>6 - AUSÊNCIA DE VAIDADE: Não alardie de teu nascimento, posição, qualidade ou logros espirituais. Recorde da natureza evanescente de todas as coisas. Elogie os outros. Visualize Deus em todos. Trate inclusive a mais pequena das criaturas como a você mesmo.</p>
+                        <p>7 - NÃO IRRITABILIDADE: A irritabilidade é precursora de violentas explosões de cólera. Vigie as alterações do equilíbrio mental. Observe as pequenas ondas de cólera que regem o lago de sua mente. Não permita que adquiram grandes proporções. Então alcançarás um estado de não irritabilidade, de paz e de amor.</p>
+                        <p>8 - EQUILÍBRIO: Tenha calma. Suporte pacientemente o insulto, a injuria, o sofrimento, o fracasso e a falta de respeito. Não se ensoberbeças com elogios, o êxito e as honrarias. Em ambas situações mantenha uma atitude equilibrada. Atua igual com amigos como aos inimigos. Não deixes nunca que nada perturbe tua paz interior.</p>
+                        <p>9 - FIRMEZA: Lembre-se que uma mente inconstante não tem possibilidade de alcançar nada. Desperta tua disciplina. Eleja um ideal. Tenha-o sempre presente. Não deixes que sua mente se separe dele nem um só momento.</p>
+                        <p>10 - ADAPTABILIDADE: Compreende a natureza das pessoas com quem há de estar em contato. Ajusta teu modo de ser e tua conduta para eles, de tal maneira que possa agrada-los. Suporte alegremente as excentricidades dos outros. Reaja sempre de modo harmonioso. Serve a todos. Ame a todos.</p>
+                        <p>11 - HUMILDADE: Respeite a todos. Não eleve o tom de voz diante de pessoas maiores ou veneradas. Todos confiarão em ti. Todos te obedecerão, te respeitarão e te reverenciarão. Não consideres ninguém inferior a ti.</p>
+                        <p>12 - INTEGRIDADE: Desenvolva uma personalidade integra, recolha todos os pontos dispersos de seu caráter. Seja uma pessoa de elevados princípios morais. Leve uma vida reta. Deixe que isto emane de ti.</p>
+                        <p>13 - NOBREZA: Fuja das impurezas da mente como do veneno. Nunca considere os defeitos dos outros. Aprecie suas boas qualidades. Nunca te entregues aos maus pensamentos, palavras e ações.</p>
+                        <p>14 - MAGNANIMIDADE: Considere todas as coisas com a mente aberta. Ignore os defeitos dos outros. Seja nobre e receptivo em tudo. Evite os boatos inúteis e a disseminação. Não deixe que sua mente se prenda em pequenas coisas.</p>
+                        <p>15 - CARIDADE: Dê, dê e dê. Irradie teus pensamentos de amor e de boa vontade. Perdoe a teu próximo. Bendiga o homem que te injuria. Reparta o que tens com todos. Alimente e veste a todos. Dissemina o conhecimento e a soberania espiritual que possui como um dom divino.</p>
+                        <p>16 - GENEROSIDADE: Seja liberal quando dá. Tenha um coração amplo. Não sejas miserável. Fique feliz com a alegria dos outros. A generosidade é uma virtude irmã da caridade, é a culminação da caridade, da magnanimidade e da nobreza.</p>
+                        <p>17 - PUREZA: Seja Puro de coração. Elimine a luxúria, a cólera, a avareza e outras más qualidades. Seja puro em teus pensamentos. Não deixe que entre em sua mente maus pensamentos. Pense no bem estar de todos. Seja puro em suas palavras. Nunca pronuncie palavras vulgares ou grosseiras. Seja puro também com seu corpo. Mantenha-o limpo, mantenha tuas roupas e a sua volta limpo. Observe as normas de higiene física, mental, moral	e espiritual.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion_item" id="25">
+                <div class="accordion_header">
+                    <span><a href="#25">O Jovem Samurai</a></span>
+                    <div class="icon">
+                        +
+                    </div>
+                </div>
+                <div class="accordion_content">
+                    <div class="apostila">
+                        <p>"Um jovem Samurai perguntou ao seu mestre: Como me torno o melhor guerreiro? O mestre então respondeu: Estas vendo aquela pedra ali? Então vai até a pedra e xingue bastante. O jovem samurai foi, xingou a pedra, e retornou ao mestre. O mestre perguntou: O que foi que ela fez? O Jovem respondeu: Nada! Então o mestre disse: Pega tua espada e ataque ela, com vários golpes. O jovem destruiu a espada contra a pedra. O jovem samurai retornou ao mestre e disse: Nada Aconteceu! O mestre disse: Para seres o melhor guerreiro, tens que ser como aquela pedra, teres a frieza de não reagir diante de atos e palavras, e te tornarás imbatível..."</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion_item" id="26">
+                <div class="accordion_header">
+                    <span><a href="#26">O Samurai e o Monge</a></span>
+                    <div class="icon">
+                        +
+                    </div>
+                </div>
+                <div class="accordion_content">
+                    <div class="apostila">
+                        <p>“Conta-se que, um dia, um Samurai grande e forte, conhecido pela sua índole violenta, foi procurar um sábio monge, em busca de respostas para suas dúvidas.</p>
+                        <p>– Monge, disse o Samurai, com desejo sincero de aprender, ensina-me sobre o céu e o inferno.</p>
+                        <p>O monge, de pequena estatura e muito franzino, olhou para o bravo guerreiro e, simulando desprezo, lhe disse:</p>
+                        <p>– Eu não poderia ensinar-lhe coisa alguma, você está imundo. Seu mau cheiro é insuportável. Ademais, a lâmina da sua espada está enferrujada. Você é uma vergonha para a sua classe.</p>
+                        <p>O Samurai ficou enfurecido. O sangue lhe subiu ao rosto e ele não conseguiu dizer nenhuma palavra, tamanha era sua raiva.</p>
+                        <p>Empunhou a espada, ergueu-a sobre a cabeça e se preparou para decapitar o monge.</p>
+                        <p>– Aí começa o inferno, disse-lhe o sábio mansamente.</p>
+                        <p>O Samurai ficou imóvel. A sabedoria daquele pequeno homem o impressionara. Afinal, arriscou a própria vida para lhe ensinar sobre o inferno.</p>
+                        <p>O bravo guerreiro abaixou lentamente a espada e agradeceu ao monge pelo valioso ensinamento.</p>
+                        <p>O velho sábio continuou em silêncio.</p>
+                        <p>Passado algum tempo o Samurai, já com a intimidade pacificada, pediu humildemente ao monge que lhe perdoasse o gesto infeliz.</p>
+                        <p>Percebendo que seu pedido era sincero, o monge lhe falou:</p>
+                        <p>– Aí começa o céu.”</p>
+                        <p>Tanto o céu quanto o inferno, são estados da alma que nós próprios elegemos no nosso dia a dia.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion_item" id="27">
+                <div class="accordion_header">
+                    <span><a href="#27">O Novo Mestre</a></span>
+                    <div class="icon">
+                        +
+                    </div>
+                </div>
+                <div class="accordion_content">
+                    <div class="apostila">
+                        <p>"Num antigo Mosteiro o Grande Mestre havia falecido, então o conselho dos anciões reuniou-se para decidir quem seria o novo Mestre, reuniram todos os melhores alunos do Grande Mestre, colocaram numa sala e no meio da sala tinha um jarro com uma bela flor, os anciões olharam para todos e disseram: Este é o problema quem conseguir resolver será o novo Mestre, todos ficaram em silêncio olhando atentamente para o jarro com a flor, quando de repente um dos discípulos se levanta, saca a espada e com dois golpes destrói por completo o jarro e a flor, nisso os anciões olharam para os outros e disseram ele é o Novo Mestre, pois não importa o quão belo seja o problema, se é um problema ele tem que ser eliminado."</p>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="accordion_item" id="28">
+                <div class="accordion_header">
+                    <span><a href="#28">Provérbios</a></span> 
+                    <div class="icon">
+                        +
+                    </div>
+                </div>
+                <div class="accordion_content">
+                    <div class="apostila">
+                        <p>"O caminho é conhecido por todos, mas nem todos conhecem o caminho..."</p>
+                        <p>"O ninjutsu não é um espetáculo. Uma demonstração pública de ninjutsu; é em si a negação do shinobi..."</p>
+                        <p>"Os bravos só os são por apenas um instante, como o sonho da tarde dura um momento.</p>
+                        <p>"Os fortes no final são sempre destruídos, eles são como poeira ao vento..."</p>
+                        <p>"A vida e a morte são idênticas apenas o Kihaku é verdadeiro..."</p>
+                        <p>"O Ninja se cria pela sabedoria, firma-se pelo entendimento, sustenta-se pelo mistério..."</p>
+                        <p>"Uma pessoa fora de seu centro, é como uma folha ao vento; voa sem direção..."</p>
+                        <p>"Acalmamos a mente, e libertamos o espírito..."</p>
+                        <p>"O maior guerreiro é aquele que vence sem lutar..."</p>
+                        <p>"O homem que conseguir tornar forte seus pontos fracos, se torna invencível..."</p>
+                        <p>"O trabalho dos pés pode vencer, e vencerá qualquer chute ou soco. Sem a ação dos pés, o lutador é como a artilharia que não pode se movimentar..."</p>
+                        <p>"Conheça teu inimigo como a ti mesmo, e vencerás em mil batalhas..."</p>
+                        <p>"Se desejas ocultar uma das mãos, então mexa ambas as mãos..."</p>
+                        <p>"De inicio um soco é apenas um soco, mas depois de mil socos um soco é mais do que um soco, e depois de 10 mil socos, um soco novamente se torna apenas um soco..."</p>
+                        <p>"O forte não é aquele que vence os outros, mas sim aquele que vence a si mesmo..."</p>
+                        <p>"Derrotar a própria dor, é melhor do que vencer o inimigo. È como vencer 1000 Homens em 10 batalhas..."</p>
+                        <p>"A única coisa a temer é o medo de si mesmo..."</p>
+                        <p>"Tal como o vento toca a superfície do lago, os efeitos do invisível sobre o visível se tornam evidentes..."</p>
+                        <p>"O que é mais submisso do que a água roendo a rocha..."</p>
+                        <p>"O Guerreiro é aquele que possui arma, corpo e mente em plena harmonia..."</p>
+                        <p>"Só se vence o medo dominando a mente..."</p>
+                        <p>"Unir vida e a morte, e às tornar uma única coisa, é torna-se um verdadeiro guerreiro..."</p>
+                        <p>"A desonra é como um cicatriz na árvore, cresce com o tempo, e nunca desaparece..."</p>
+                        <p>"A sabedoria trás contigo os limites do conhecimento"</p>
+                        <p>"Ele não sabia que era impossível; Então ele foi, e realizou."</p>
+                        <p>"Ter problemas na vida é inevitável, ser derrotado por eles é opcional."</p>
+                        <p>"Ninguém planeja fracassar, mas fracassa por não planejar."</p>
+                        <p>"Quem domina a própria mente, consegue controlar o ambiente."</p>
+                        <p>"Se não puder fazer tudo, faça tudo que puder."</p>
+                        <p>"O covarde nunca tenta, o fracassado nunca termina e o vencedor nunca desiste."</p>
+                        <p>"Virtudes são aquilo que praticamos sem perceber e quando não estamos sendo observados."</p>
+                        <p>"Ninguém é tão grande que não possa aprender, nem tão pequeno que não possa ensinar."</p>
+                        <p>"O caráter de um homem não se define pelo que ele é, mas pelo que ele faz."</p>
+                        <p>"Ficar bravo é fácil, difícil é ficar bravo na hora certa."</p>
+                        <p>"Todo fim é um novo começo."</p>
+                        <p>"Para o triunfo do mal, basta que o bem não faça nada."</p>
+                        <p>"O pessimista vê uma dificuldade, enquanto o otimista vê uma oportunidade."</p>
+                        <p>"Uma mente poderosa é algo que transcende toda a realidade".</p>
+                        <p>"Se a boca esconde as palavras, os olhos as revelam".</p>
+                        <p>"Não empunhes a espada para seu inimigo só porque ele te feriu com palavras, mas dê à ele seu desprezo, pois se 1 palavra machuca mais do que 1000 socos, 1 gesto de desprezo pode machucar mais do que 1000 palavras".</p>
+                        <p>"Nunca justifique seus erros com palavras, mas assuma seus erros e repare-os com ações".</p>
+                        <p>"Para que os problemas à sua volta não perturbem sua harmonia interior é preciso ser sereno como um leito de um rio, mas firme e forte como uma rocha."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </section>
+        <?php 
+            $footer_class='footer';
+            include_once('../views/footer.php');
+        ?>
+        <script src="../js/accordion.js"></script>
+        <script src="../js/menubar.js"></script>
+        <script src="../js/aulas.js"></script>
+    </body>
+</html>

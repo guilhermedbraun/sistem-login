@@ -1,0 +1,100 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+body {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  background: var(--background);
+}
+/* //////////// Body /////////////// */
+.section {
+  display: block;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100vh;
+  flex-direction: column;
+}
+/* ///////////// header ////////////// */
+.header {
+  display: flex;
+  position: relative;
+  width: 100%;
+  height: 60px;
+  padding: 0 20px;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--tarja-theme);
+}
+.logo {
+  position: relative;
+  width: auto;
+  height: auto;
+  padding: 0;
+  align-items: center;
+}
+.logo img {
+  position: absolute;
+  width: 55px;
+  height: 55px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+/* //////////// Menu /////////////// */ 
+.nav {
+  padding: 3px;
+}
+.menu {
+  display: flex;
+  list-style: none;
+}
+.menu li {
+  padding: 3px;
+}
+.menu li a {
+  display: block;
+  width: 100px;
+  height: auto;
+  font-size: 14px;
+  text-decoration: none;
+  text-align: center;
+  padding: 8px 0;
+  color: var(--text-theme);
+  transition: background-color 0.3s;
+  border: 1px solid var(--borde-theme);
+}
+.menu li a:hover {
+  background: var(--select-hover);
+}
+#sair a {
+  display: "";
+  position: relative;
+  width: 40px;
+  height: auto;
+  padding: 5px 0 0;
+}
+#sair a:hover {
+  background: var(--sys-trash-hover);
+}
+.msg_notification {
+	width: 90%;
+	margin: 10% auto;
+	padding: 10px;
+  text-align: center;
+  justify-content: center;
+	background: var(--painel-admin);
+}
+#countdown {
+  font-size: 40px;
+  font-weight: bold;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
